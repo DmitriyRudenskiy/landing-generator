@@ -1,0 +1,5 @@
+/vendor
+.env
+/.idea
+/public_html/avatar
+/public_html/post

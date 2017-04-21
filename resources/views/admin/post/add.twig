@@ -1,0 +1,47 @@
+{% extends "admin.layout.base" %}
+
+{% block title %}Создать новый пост{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-lg-5 col-md-7">
+            <h1>Просмотр полльзователя</h1>
+
+            <form enctype="multipart/form-data" method="post" action="{{ route('admin_post_insert') }}">
+                <div class="form-group">
+                    <label>Изображения</label>
+                    <p><input type="file" name="images[]" multiple="true"></p>
+                    <p><input type="file" name="images[]" multiple="true"></p>
+                    <p><input type="file" name="images[]" multiple="true"></p>
+                    <p class="help-block">Example block-level help text here.</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Пользователь</label>
+                    <select class="form-control" name="user_id" required>
+                        <option value="">--</option>
+                        {% for user in users %}
+                            <option value="{{ user.id }}">{{ user.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Текст</label>
+                    <textarea class="form-control" name="text" rows="3" required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Сохранить</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script>
+        $(document).ready(function(){
+            $('.img-avatar').click(function(){
+                $('.upload-image [type="file"]').click();
+            });
+        });
+    </script>
+{% endblock %}

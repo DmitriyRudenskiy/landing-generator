@@ -1,0 +1,112 @@
+{% extends "admin.layout.base" %}
+
+{% block title %}Создать новый пост{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-lg-5 col-md-7">
+            <h1>Просмотр просмотр компании</h1>
+
+            {% if company.latitude is not empty and company.longitude is not empty %}
+            <div id="map" style="width: 100%; height: 150px;"></div>
+            {% else %}
+                <div class="alert alert-danger" role="alert">Указанный адрес не может использоваться для отображения компании на карте</div>
+            {% endif %}
+
+            <form method="post" action="{{ route('admin_company_update') }}">
+                <input type="hidden" name="company_id" value="{{ company.id }}">
+
+                <div class="form-group">
+                    <label>Город</label>
+                    <select class="form-control" name="city_id" required>
+                        <option value="">--</option>
+                        {% for city in cities %}
+                            {% if company.city_id == city.id  %}
+                                <option value="{{ city.id }}" selected>{{ city.name }}</option>
+                            {% else %}
+                                <option value="{{ city.id }}">{{ city.name }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Название</label>
+                    <input type="text" class="form-control" name="name" value="{{ company.name }}" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Адрес</label>
+                    <input type="text" class="form-control" name="address" value="{{ company.address }}" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Рабочее время</label>
+                    <input type="text" class="form-control" name="work_times" value="{{ company.work_times }}" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Телефон</label>
+                    <input type="text" class="form-control" name="phone" value="{{ company.phone }}" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Сайт</label>
+                    <input type="text" class="form-control" name="site">
+                </div>
+
+                <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Сохранить</button>
+            </form>
+
+            <div class="row well" style="margin-top: 48px;">
+                <div class="col-lg-3 col-md-4">
+                    <div class="thumbnail">
+                        <form enctype="multipart/form-data" method="post" action="{{ route('admin_company_image_add') }}">
+                            <input type="hidden" name="company_id" value="{{ company.id }}">
+                            <input type="file" name="image" onchange="this.form.submit()">
+                        </form>
+                    </div>
+                </div>
+
+                {% for image in company.images %}
+                <div class="col-lg-3 col-md-4">
+                    <div class="thumbnail">
+                        <div class="caption">
+                            <p class="text-center">
+                                <a href="{{ route('admin_company_cover', {'id' : image.id}) }}" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span></a>
+                                <a href="{{ route('admin_company_remove', {'id' : image.id}) }}" class="btn btn-danger" role="button"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+                            </p>
+                        </div>
+                        <img src="{{ image.pathUrl('120_90_') }}" alt="...">
+
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    {% if company.latitude is not empty and company.longitude is not empty %}
+        <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+        <script type="text/javascript">
+            ymaps.ready(init);
+            var myMap,
+                    myPlacemark;
+
+            function init(){
+                myMap = new ymaps.Map("map", {
+                    center: [{{ company.latitude }}, {{ company.longitude }}],
+                    zoom: 15,
+                    controls: [],
+                });
+
+                myMap.behaviors.disable('scrollZoom');
+
+                myPlacemark = new ymaps.Placemark([{{ company.latitude }}, {{ company.longitude }}]);
+
+                myMap.geoObjects.add(myPlacemark);
+            }
+        </script>
+    {% endif %}
+
+{% endblock %}
+

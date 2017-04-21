@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePostImageTable extends Migration
+class CreateBenefitsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,13 @@ class CreatePostImageTable extends Migration
      */
     public function up()
     {
-        Schema::create('post_image', function (Blueprint $table) {
+        Schema::create('benefits', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('post_id')->unsigned();
-            $table->string('path');
-            $table->foreign('post_id')->references('id')->on('post');
+            $table->boolean('visible');
+            $table->string('cover');
+            $table->string('title');
+            $table->string('description');
+            $table->timestamps();
         });
     }
 
@@ -27,6 +29,6 @@ class CreatePostImageTable extends Migration
      */
     public function down()
     {
-        Schema::drop('post_image');
+        Schema::drop('benefits');
     }
 }

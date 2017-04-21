@@ -12,13 +12,13 @@ $app->post('v1/login', 'UserController@login');
 
 $app->group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers\Api'], function () use ($app) {
     // список городов
-    $app->get('cities', 'CityController@index');
+    $app->get('cities', 'CityController@dashboard');
 
     // получить новости в указаном короде
-    $app->get('posts', 'PostController@index');
+    $app->get('posts', 'PostController@dashboard');
 
     // список компаний в городе
-    $app->get('companies/{cityId}', 'CompanyController@index');
+    $app->get('companies/{cityId}', 'CompanyController@dashboard');
 
     // просмотр описания скрипта
     $app->get('company/view/{id}', 'CompanyController@view');
@@ -26,27 +26,31 @@ $app->group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers\Api'], funct
 
 $app->group(['prefix' => 'admin', 'namespace' => 'App\Http\Controllers\Admin'], function() use ($app)
 {
-    // пользователь
-    $app->get('users', ['as' => 'admin_user_index', 'uses' => 'UserController@index']);
-    $app->get('user/view/{id}', ['as' => 'admin_user_view', 'uses' => 'UserController@view']);
-    $app->post('user/update/', ['as' => 'admin_user_update', 'uses' => 'UserController@update']);
-    $app->post('user/avatar/', ['as' => 'admin_user_avatar', 'uses' => 'ImageController@avatar']);
+    // главная
+    $app->get('/', ['as' => 'admin_dashboard', 'uses' => 'DashboardController@index']);
+    $app->get('/info', ['as' => 'admin_info', 'uses' => 'DashboardController@info']);
 
-    // посты
-    $app->get('posts', ['as' => 'admin_post_index', 'uses' => 'PostController@index']);
-    $app->get('posts/add', ['as' => 'admin_post_add', 'uses' => 'PostController@add']);
-    $app->post('posts/insert', ['as' => 'admin_post_insert', 'uses' => 'PostController@insert']);
+    // наши преимущества
+    $app->get('/advantage', ['as' => 'admin_advantage_index', 'uses' => 'AdvantageController@index']);
+    $app->get('/advantage/add', ['as' => 'admin_advantage_add', 'uses' => 'AdvantageController@add']);
+    $app->get('/advantage/edit/{id}', ['as' => 'admin_advantage_edit', 'uses' => 'AdvantageController@edit']);
+    $app->post('/advantage/insert', ['as' => 'admin_advantage_insert', 'uses' => 'AdvantageController@insert']);
+    $app->post('/advantage/update', ['as' => 'admin_advantage_update', 'uses' => 'AdvantageController@update']);
+    $app->post('/advantage/remove', ['as' => 'admin_advantage_remove', 'uses' => 'AdvantageController@remove']);
 
-    // компании
-    $app->get('companies', ['as' => 'admin_company_index', 'uses' => 'CompanyController@index']);
-    $app->get('company/add', ['as' => 'admin_company_add', 'uses' => 'CompanyController@add']);
-    $app->post('company/insert', ['as' => 'admin_company_insert', 'uses' => 'CompanyController@insert']);
-    $app->get('company/view/{id}', ['as' => 'admin_company_view', 'uses' => 'CompanyController@view']);
-    $app->post('company/update', ['as' => 'admin_company_update', 'uses' => 'CompanyController@update']);
-    $app->get('company/hide/{id}', ['as' => 'admin_company_hide', 'uses' => 'CompanyController@hide']);
+    // заголовок
+    $app->get('/header', ['as' => 'admin_header_index', 'uses' => 'HeaderController@index']);
+    $app->get('/header/add', ['as' => 'admin_header_add', 'uses' => 'HeaderController@add']);
+    $app->get('/header/edit/{id}', ['as' => 'admin_header_edit', 'uses' => 'HeaderController@edit']);
+    $app->post('/header/insert', ['as' => 'admin_header_insert', 'uses' => 'HeaderController@insert']);
+    $app->post('/header/update', ['as' => 'admin_header_update', 'uses' => 'HeaderController@update']);
+    $app->post('/header/remove', ['as' => 'admin_header_remove', 'uses' => 'HeaderController@remove']);
 
-    $app->post('company/image/add', ['as' => 'admin_company_image_add', 'uses' => 'CompanyImageController@add']);
-    $app->get('company/image/remove/{id}', ['as' => 'admin_company_remove', 'uses' => 'CompanyImageController@remove']);
-    $app->get('company/image/cover/{id}', ['as' => 'admin_company_cover', 'uses' => 'CompanyImageController@cover']);
-
+    // товары
+    $app->get('/product', ['as' => 'admin_product_index', 'uses' => 'ProductController@index']);
+    $app->get('/product/add', ['as' => 'admin_product_add', 'uses' => 'ProductController@add']);
+    $app->get('/product/edit/{id}', ['as' => 'admin_product_edit', 'uses' => 'ProductController@edit']);
+    $app->post('/product/insert', ['as' => 'admin_product_insert', 'uses' => 'ProductController@insert']);
+    $app->post('/product/update', ['as' => 'admin_product_update', 'uses' => 'ProductController@update']);
+    $app->post('/product/remove', ['as' => 'admin_product_remove', 'uses' => 'ProductController@remove']);
 });

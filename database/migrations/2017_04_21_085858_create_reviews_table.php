@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePostTable extends Migration
+class CreateReviewsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,14 @@ class CreatePostTable extends Migration
      */
     public function up()
     {
-        Schema::create('post', function (Blueprint $table) {
-            $table->increments('id')->unsigned();
-            $table->integer('user_id')->unsigned();
-            $table->text('text');
+        Schema::create('reviews', function (Blueprint $table) {
+            $table->increments('id');
+            $table->boolean('visible');
+            $table->string('avatar');
+            $table->string('name');
+            $table->string('text');
+            $table->string('url');
             $table->timestamps();
-
-            $table->foreign('user_id')->references('id')->on('user');
         });
     }
 
@@ -29,6 +30,6 @@ class CreatePostTable extends Migration
      */
     public function down()
     {
-        Schema::drop('post');
+        Schema::drop('reviews');
     }
 }

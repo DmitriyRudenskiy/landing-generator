@@ -3,7 +3,7 @@ namespace App\Http\Controllers\Admin;
 
 use Laravel\Lumen\Routing\Controller;
 
-class HeaderController extends Controller
+class ReviewController extends Controller
 {
     public function index()
     {

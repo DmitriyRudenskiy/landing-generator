@@ -21,3 +21,11 @@ ALTER TABLE mobile_app.post ADD text VARCHAR(255) NULL;
 http://localhost:8000/v1/cities
 http://localhost:8000/v1/companies/1
 http://localhost:8000/v1/company/view/1
+
+
+
+
+                        
+                        
+                        <li><a href="{{ route('admin_user_index') }}">Коментарии<span class="pull-right hidden-xs showopacity glyphicon glyphicon-comment"></span></a></li>
+                        <li><a href="{{ route('admin_company_index') }}">Компании<span class="pull-right hidden-xs showopacity glyphicon glyphicon-map-marker"></span></a></li>

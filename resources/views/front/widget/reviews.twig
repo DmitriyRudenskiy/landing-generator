@@ -1,0 +1,50 @@
+<div class="row" style="padding: 24px 0">
+    <div class="col-md-10 col-md-offset-1">
+        <h2  style="margin-top: 48px; line-height: 38px; text-align: center; color: #445B9F;">{{ title }}</h2>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            Новый текст
+                        </div>
+                        <div class="item">
+                            Второй текст
+                        </div>
+                    </div>
+
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+
+                {% for item in list %}
+                    <div class="row img-thumbnail" style="padding: 24px 0">
+                        <div class="col-md-3">
+                            <img src="{{ item.avatar }}" alt="..." class="img-circle">
+                        </div>
+
+                        <div class="col-md-8" style="font-size: 17px; line-height: 25px;">
+                            <p><em>{{ item.text }}</em></p>
+                            <p class="text-right"><em>{{ item.name }},<br>{{ item.url }}</em></p>
+                        </div>
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+</div>

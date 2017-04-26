@@ -1,28 +1,6 @@
 <?php
 
-// для тестов
-$app->get('/', function () use ($app) {
-    echo route('admin_user_index');
-});
-$app->get('jwt', 'TestController@jwt');
-$app->get('ping', 'TestController@ping');
-
-
-$app->post('v1/login', 'UserController@login');
-
-$app->group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers\Api'], function () use ($app) {
-    // список городов
-    $app->get('cities', 'CityController@dashboard');
-
-    // получить новости в указаном короде
-    $app->get('posts', 'PostController@dashboard');
-
-    // список компаний в городе
-    $app->get('companies/{cityId}', 'CompanyController@dashboard');
-
-    // просмотр описания скрипта
-    $app->get('company/view/{id}', 'CompanyController@view');
-});
+$app->get('/', 'FrontController@index');
 
 $app->group(['prefix' => 'admin', 'namespace' => 'App\Http\Controllers\Admin'], function() use ($app)
 {

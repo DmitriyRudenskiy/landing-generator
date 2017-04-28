@@ -2,40 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Repository\BenefitsRepository;
+use App\Repository\HeaderRepository;
 use Laravel\Lumen\Routing\Controller;
-use Firebase\JWT\JWT;
 
 class FrontController extends Controller
 {
-    public function index()
+    public function index(BenefitsRepository $benefitsRepository, HeaderRepository $headerRepository)
     {
         $data = [
-            'header' => [
-              'bg' => '/front/7f77230f0ed3d5287dbb0f75ef732e37.jpg',
-                'title' => 'Спортивные шведские стенки',
-                'sub_title' => 'для детей от 3-х лет и взрослых до 120 кг
-                от производителя в Ульяновске'
-            ],
-
-            'benefits' => [
-                'list' => [
-                    [
-                        'cover' => '/front/001.png',
-                        'title' => 'Шведские стенки российского производства',
-                        'description' => 'Шведские стенки и турники произведены в России (Ульяновская область), а не привезены из Китая',
-                    ],
-                    [
-                        'cover' => '/front/002.png',
-                        'title' => 'Соответствие требованиям ГОСТ',
-                        'description' => 'Шведские стенки изготовлены на современном оборудовании в соответствии с требованиями ГОСТ Р 52169-2003 и имеют сертификат соответствия',
-                    ],
-                    [
-                        'cover' => '/front/003.png',
-                        'title' => 'Выдерживают нагрузку 120 кг',
-                        'description' => 'Шведские стенки нашего производства выполнены из металла толщиной 2,5 мм, что придает им особую прочность',
-                    ]
-                ]
-            ],
             'products' => [
                 'title' => 'Шведские стенки для взрослых и детей'
             ],
@@ -58,6 +33,24 @@ class FrontController extends Controller
                 ]
             ]
         ];
+
+        // шапка сайта
+        $data['header'] = $headerRepository->get()->toArray();
+
+
+        //dd($data['header']);
+
+        // преимущества
+        $data['benefits']['list'] = [];
+        $list = $benefitsRepository->getList();
+
+        foreach ($list as $value) {
+            $data['benefits']['list'][] = [
+                'cover' => $value->getPath(),
+                'title' => $value->title,
+                'description' => $value->description,
+            ];
+        }
 
         return view('front.index', ['data' => $data]);
     }

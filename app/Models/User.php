@@ -10,7 +10,7 @@ class User extends Model
 
     public function city()
     {
-        return $this->belongsTo(City::class, 'city_id');
+        return $this->belongsTo(Benefits::class, 'city_id');
     }
 
     public function pathUrl($prefix = 'b_')

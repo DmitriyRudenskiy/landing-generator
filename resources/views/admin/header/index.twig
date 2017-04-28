@@ -1,15 +1,15 @@
 {% extends "admin.layout.base" %}
 
-{% block title %}Заголовок сайта{% endblock %}
+{% block title %}Шапки сайта{% endblock %}
 {% block content %}
     <div class="row">
         <div class="col-lg-6 col-md-10">
-            <h1>Заголовок сайта</h1>
+            <h1>Шапки сайта</h1>
         </div>
 
         <div class="col-lg-1 col-md-2">
             <p style="padding-top: 24px">
-                <a href="{{ route('admin_advantage_add') }}" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>  Добавить</a>
+                <a href="{{ route('admin_header_add') }}" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>  Добавить</a>
             </p>
         </div>
     </div>
@@ -17,48 +17,48 @@
     <div class="row">
         <div class="col-lg-7 col-md-12">
             {% if  list.count() > 0 %}
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th>#</th>
-                    <th><span class="glyphicon glyphicon-picture" aria-hidden="true"></span></th>
-                    <th>Город</th>
-                    <th>Название</th>
-                    <th>Описание</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for item in list %}
+                <table class="table table-striped">
+                    <thead>
                     <tr>
-                        <td>{{ item.id }}</td>
-                        <td>
-                            {% if item.images.count() %}
-                                <img src="{{ item.images.first().pathUrl('120_90_') }}" alt="">
-                            {% else %}
-                                <span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
-                            {% endif %}
-                        </td>
-                        <td>{{ item.city }}</td>
-                        <td>{{ item.name }}</td>
-                        <td>
-                            <p><span class="glyphicon glyphicon-map-marker text-muted" aria-hidden="true"></span> {{ item.address }}<br>
-                                <span class="glyphicon glyphicon-time text-muted" aria-hidden="true"></span> {{ item.work_times }}<br>
-                                <span class=" glyphicon glyphicon-earphone text-muted" aria-hidden="true"></span> {{ item.phone }}</p>
-                        </td>
-                        <td class="text-right">
-                            <a href="" class="btn btn-link"><span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span></a>
-                            <a href="{{ route('admin_company_view', {'id': item.id}) }}" class="btn btn-link"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
-                        </td>
+                        <th>#</th>
+                        <th>Приоритет</th>
+                        <th>Фон</th>
+                        <th>Заголов</th>
+                        <th>Подзаголовокпмои</th>
+                        <th></th>
                     </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    {% for item in list %}
+                        <tr>
+                            <td>{{ item.id }}</td>
+                            <td>{{ item.priority }}</td>
+                            <td>
+                                {% if item.bg is not empty %}
+                                    <img src="{{ item.path() }}" alt="" width="50">
+                                {% else %}
+                                    <span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
+                                {% endif %}
+                            </td>
+                            <td>{{ item.title }}</td>
+                            <td>{{ item.sub_title }}</td>
+                            <td class="text-right text-nowrap">
+                                {% if item.visible > 0 %}
+                                    <a href="{{ route('admin_benefits_hide', {'id': item.id}) }}" class="btn btn-link"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
+                                {% else %}
+                                    <a href="{{ route('admin_benefits_show', {'id': item.id}) }}" class="btn btn-link"><span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span></a>
+                                {% endif %}
+                                <a href="{{ route('admin_benefits_edit', {'id': item.id}) }}" class="btn btn-link"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
 
-            {{ list.render() | raw }}
-                {% else %}
-                    <div class="alert alert-info" role="alert">Нет компаний</div>
-                {% endif %}
+                {{ list.render() | raw }}
+            {% else %}
+                <div class="alert alert-info" role="alert">Нет созданных "преимуществ"</div>
+            {% endif %}
         </div>
     </div>
 {% endblock %}

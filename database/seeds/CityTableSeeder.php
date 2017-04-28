@@ -1,18 +1,18 @@
 <?php
 use Illuminate\Database\Seeder;
-use App\Models\City;
+use App\Models\Benefits;
 
 class CityTableSeeder extends Seeder
 {
 
     public function run()
     {
-        City::create([
+        Benefits::create([
             'id' => 1,
             'name' => 'Новосибирск'
         ]);
 
-        City::create([
+        Benefits::create([
             'id' => 2,
             'name' => 'Москва'
         ]);

@@ -9,12 +9,15 @@ $app->group(['prefix' => 'admin', 'namespace' => 'App\Http\Controllers\Admin'], 
     $app->get('/info', ['as' => 'admin_info', 'uses' => 'DashboardController@info']);
 
     // наши преимущества
-    $app->get('/advantage', ['as' => 'admin_advantage_index', 'uses' => 'AdvantageController@index']);
-    $app->get('/advantage/add', ['as' => 'admin_advantage_add', 'uses' => 'AdvantageController@add']);
-    $app->get('/advantage/edit/{id}', ['as' => 'admin_advantage_edit', 'uses' => 'AdvantageController@edit']);
-    $app->post('/advantage/insert', ['as' => 'admin_advantage_insert', 'uses' => 'AdvantageController@insert']);
-    $app->post('/advantage/update', ['as' => 'admin_advantage_update', 'uses' => 'AdvantageController@update']);
-    $app->post('/advantage/remove', ['as' => 'admin_advantage_remove', 'uses' => 'AdvantageController@remove']);
+    $app->get('/benefits', ['as' => 'admin_benefits_index', 'uses' => 'BenefitController@index']);
+    $app->get('/benefits/add', ['as' => 'admin_benefits_add', 'uses' => 'BenefitController@add']);
+    $app->get('/benefits/edit/{id}', ['as' => 'admin_benefits_edit', 'uses' => 'BenefitController@edit']);
+    $app->post('/benefits/insert', ['as' => 'admin_benefits_insert', 'uses' => 'BenefitController@insert']);
+    $app->post('/benefits/update', ['as' => 'admin_benefits_update', 'uses' => 'BenefitController@update']);
+    $app->post('/benefits/remove', ['as' => 'admin_benefits_remove', 'uses' => 'BenefitController@remove']);
+    $app->post('/benefits/cover', ['as' => 'admin_benefits_cover', 'uses' => 'BenefitController@cover']);
+    $app->get('/benefits/hide/{id}', ['as' => 'admin_benefits_hide', 'uses' => 'BenefitController@hide']);
+    $app->get('/benefits/show/{id}', ['as' => 'admin_benefits_show', 'uses' => 'BenefitController@show']);
 
     // заголовок
     $app->get('/header', ['as' => 'admin_header_index', 'uses' => 'HeaderController@index']);

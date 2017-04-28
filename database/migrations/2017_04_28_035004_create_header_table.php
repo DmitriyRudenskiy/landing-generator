@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBenefitsTable extends Migration
+class CreateHeaderTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,12 @@ class CreateBenefitsTable extends Migration
      */
     public function up()
     {
-        Schema::create('benefits', function (Blueprint $table) {
+        Schema::create('header', function (Blueprint $table) {
             $table->increments('id');
-            $table->boolean('visible');
-            $table->string('cover')->nullable();
+            $table->boolean('visible')->default(0);
+            $table->string('bg')->nullable();
             $table->string('title');
-            $table->string('description');
+            $table->string('sub_title');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateBenefitsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('benefits');
+        Schema::drop('header');
     }
 }

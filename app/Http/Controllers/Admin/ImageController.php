@@ -36,7 +36,8 @@ class ImageController extends Controller
         );
 
         if ($validator->fails()) {
-            redirect()->back();
+            //return redirect()->back();
+            dd('Ошибка');
         }
 
         // имя файла

@@ -19,6 +19,9 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+
+
+
     <style>
         * {
             font-family: 'Roboto', sans-serif;
@@ -139,7 +142,7 @@
 
 <!-- Footer -->
 <footer>
-    <div class="container" style=":  ">
+    <div class="container">
         <div class="row">
             <div class="col-lg-12">
                 <p>Copyright &copy; Your Website 2014</p>
@@ -159,40 +162,5 @@
 
 <script src="/js/jquery.js"></script>
 <script src="/js/bootstrap.min.js"></script>
-
-<script>
-
-    function cloneElement(element) {
-        $('#for-edit-bg').remove();
-
-        var width = element.width();
-        var height = element.height();
-        var position = element.position();
-
-
-        var bg = $('<div>', {"id": "for-edit-bg"});
-        bg.width(width);
-        bg.height(height);
-        bg.position(position);
-        bg.css('background', 'green');
-        bg.css('position', 'absolute');
-        bg.css('left', position.left);
-        bg.css('top', position.top);
-
-        bg.insertAfter(element);
-
-        console.log(position);
-    }
-
-    $(document).ready(function() {
-        //console.log('I work!');
-
-        $('.for-edit').hover(
-                function() {
-                    cloneElement($(this));
-                }
-        );
-    });
-</script>
 </body>
 </html>

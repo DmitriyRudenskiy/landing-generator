@@ -17,19 +17,15 @@ class HeaderRepository extends BaseRepository
 
     public function get()
     {
-        $list = Header::where('visible', 1)
+        $header = Header::where('visible', 1)
             ->orderBy('id')
             ->first();
 
-       return ($list === null) ? [] : $list->toArray();
-    }
+        if ($header === null) {
+            $header = new Header();
+        }
 
-    public function getAllList()
-    {
-        return Benefits::orderBy('visible', 'desc')
-            ->orderBy('priority', 'desc')
-            ->get();
-
+        return $header->toArray();
     }
 
     public function add(array $data)

@@ -40,4 +40,9 @@ $app->group(['prefix' => 'admin', 'namespace' => 'App\Http\Controllers\Admin'], 
     $app->post('/product/photo', ['as' => 'admin_product_photo', 'uses' => 'ProductController@photo']);
     $app->get('/product/hide/{id}', ['as' => 'admin_product_hide', 'uses' => 'ProductController@hide']);
     $app->get('/product/show/{id}', ['as' => 'admin_product_show', 'uses' => 'ProductController@show']);
+
+    // онлайн редактирование
+    $app->get('/angular', ['as' => 'admin_angular', 'uses' => 'AngularController@index']);
+
+
 });

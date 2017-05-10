@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Benefits extends Model
+class Benefits extends Model implements  PrefixInterface
 {
     protected $table = 'benefits';
 
@@ -15,8 +15,6 @@ class Benefits extends Model
         'title',
         'description'
     ];
-
-    const PREFIX_BENEFITS = 'benefits';
 
     public function getPath()
     {

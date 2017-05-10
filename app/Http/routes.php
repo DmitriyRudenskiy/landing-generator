@@ -26,6 +26,8 @@ $app->group(['prefix' => 'admin', 'namespace' => 'App\Http\Controllers\Admin'], 
     $app->post('/header/insert', ['as' => 'admin_header_insert', 'uses' => 'HeaderController@insert']);
     $app->post('/header/update', ['as' => 'admin_header_update', 'uses' => 'HeaderController@update']);
     $app->post('/header/remove', ['as' => 'admin_header_remove', 'uses' => 'HeaderController@remove']);
+    $app->post('/header/bg', ['as' => 'admin_header_bg', 'uses' => 'HeaderController@bg']);
+    $app->get('/header/show/{id}', ['as' => 'admin_header_show', 'uses' => 'HeaderController@show']);
 
     // товары
     $app->get('/product', ['as' => 'admin_product_index', 'uses' => 'ProductController@index']);
@@ -34,4 +36,8 @@ $app->group(['prefix' => 'admin', 'namespace' => 'App\Http\Controllers\Admin'], 
     $app->post('/product/insert', ['as' => 'admin_product_insert', 'uses' => 'ProductController@insert']);
     $app->post('/product/update', ['as' => 'admin_product_update', 'uses' => 'ProductController@update']);
     $app->post('/product/remove', ['as' => 'admin_product_remove', 'uses' => 'ProductController@remove']);
+
+    $app->post('/product/photo', ['as' => 'admin_product_photo', 'uses' => 'ProductController@photo']);
+    $app->get('/product/hide/{id}', ['as' => 'admin_product_hide', 'uses' => 'ProductController@hide']);
+    $app->get('/product/show/{id}', ['as' => 'admin_product_show', 'uses' => 'ProductController@show']);
 });

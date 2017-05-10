@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Repository\BenefitsRepository;
 use App\Repository\HeaderRepository;
+use App\Repository\ProductRepository;
 use Laravel\Lumen\Routing\Controller;
 
 class FrontController extends Controller
 {
-    public function index(BenefitsRepository $benefitsRepository, HeaderRepository $headerRepository)
+    public function index(BenefitsRepository $benefitsRepository,
+                          HeaderRepository $headerRepository,
+                            ProductRepository $productRepository)
     {
         $data = [
             'products' => [
@@ -35,10 +38,8 @@ class FrontController extends Controller
         ];
 
         // шапка сайта
-        $data['header'] = $headerRepository->get()->toArray();
+        $data['header'] = $headerRepository->get();
 
-
-        //dd($data['header']);
 
         // преимущества
         $data['benefits']['list'] = [];
@@ -51,6 +52,10 @@ class FrontController extends Controller
                 'description' => $value->description,
             ];
         }
+
+        // товары
+        $data['products']['list'] = $productRepository->getList();
+
 
         return view('front.index', ['data' => $data]);
     }

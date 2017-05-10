@@ -1,14 +1,35 @@
 <h2 class="text-center" style="margin-top: 48px; line-height: 38px; text-align: center; color: #445B9F;">{{ title }}</h2>
 
 
-
-<div class="row" style="border: 2px solid #445B9F; border-radius: 50px; margin: 24px 100px">
-    <div class="col-md-4" >
-        123
+{% for item in list %}
+<div class="row" style="border: 2px solid #445B9F; border-radius: 50px; margin: 24px 100px; padding: 25px;">
+    <div class="col-md-3" >
+        <img src="{{ item.path() }}" alt="..." width="250">
     </div>
 
     <div class="col-md-7" >
-        123
+        <dl class="dl-horizontal">
+            <dt>Комплектация:</dt>
+            <dd>{{ item.equipment }}</dd>
+
+            <dt>Двигатель:</dt>
+            <dd>{{ item.engine }}</dd>
+
+            <dt>Мощность:</dt>
+            <dd>{{ item.power }}</dd>
+
+            <dt>Трансмиссия:</dt>
+            <dd>{{ item.transmission }}</dd>
+
+            <dt>Привод:</dt>
+            <dd>{{ item.drive_unit }}</dd>
+
+            <dt>Тип кузова:</dt>
+            <dd>{{ item.body_type }}</dd>
+
+            <dt>Цвет:</dt>
+            <dd>{{ item.colour }}</dd>
+        </dl>
     </div>
 </div>
-
+{% endfor %}

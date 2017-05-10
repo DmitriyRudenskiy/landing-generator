@@ -2,19 +2,17 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Benefits;
+use App\Models\PrefixInterface;
 use App\Repository\BenefitsRepository;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Imagine\Gd\Imagine;
-use Imagine\Image\Box;
 use Laravel\Lumen\Routing\Controller;
 
-class BenefitController extends Controller
+class BenefitController extends Controller implements PrefixInterface
 {
-    const PREFIX_BENEFITS = 'benefits';
-
     /**
      * @var BenefitsRepository
      */
@@ -72,11 +70,6 @@ class BenefitController extends Controller
         $this->repository->update($data, $id);
 
         return redirect()->route('admin_benefits_index');
-    }
-
-    public function remove()
-    {
-
     }
 
     /**

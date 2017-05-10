@@ -14,6 +14,16 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
+            $table->boolean('visible');
+            $table->integer('priority')->default(10);
+            $table->string('cover')->nullable();
+            $table->string('equipment');
+            $table->string('engine');
+            $table->string('power');
+            $table->string('transmission');
+            $table->string('drive_unit');
+            $table->string('body_type');
+            $table->string('colour');
             $table->timestamps();
         });
     }

@@ -17,9 +17,11 @@ class HeaderRepository extends BaseRepository
 
     public function get()
     {
-        return Header::where('visible', 1)
+        $list = Header::where('visible', 1)
             ->orderBy('id')
             ->first();
+
+       return ($list === null) ? [] : $list->toArray();
     }
 
     public function getAllList()

@@ -9,7 +9,7 @@ class AngularController extends Controller
     public function index(TemplateBuilder $builder)
     {
         $data = $builder->init()->get();
-
+        
         return view('front.index', ['data' => $data]);
     }
 }

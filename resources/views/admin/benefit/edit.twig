@@ -16,7 +16,7 @@
                     {% endif %}
                 </p>
 
-                <form action="{{ route('admin_benefits_cover') }}" method="post" enctype="multipart/form-data" style="display: block">
+                <form action="{{ route('admin_benefits_cover') }}" method="post" enctype="multipart/form-data" style="display: none">
                     <input type="hidden" name="id" value="{{ model.id }}">
                     <input type="file" name="image" onchange="this.form.submit()">
                 </form>

@@ -60,7 +60,7 @@ class TemplateBuilder
         $list = $this->benefitsRepository->getList();
 
         foreach ($list as $value) {
-            $data['benefits']['list'][] = [
+            $benefits[] = [
                 'cover' => $value->getPath(),
                 'title' => $value->title,
                 'description' => $value->description,

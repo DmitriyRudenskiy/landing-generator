@@ -19,9 +19,6 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-
-
-
     <style>
         * {
             font-family: 'Roboto', sans-serif;
@@ -123,10 +120,6 @@
         }
     </style>
 
-
-
-
-
     {% if data.benefits is not empty %}
         {% include 'front/widget/benefits.twig' with data.benefits only %}
     {% endif %}
@@ -142,7 +135,7 @@
 
 <!-- Footer -->
 <footer>
-    <div class="container">
+    <div class="container" style=":  ">
         <div class="row">
             <div class="col-lg-12">
                 <p>Copyright &copy; Your Website 2014</p>
@@ -162,5 +155,47 @@
 
 <script src="/js/jquery.js"></script>
 <script src="/js/bootstrap.min.js"></script>
+
+<script>
+
+    function cloneElement(element) {
+        $('#for-edit-bg').remove();
+
+        var width = element.width()
+                + (element.css('padding-left').replace(/px/g,"") * 1)
+                + (element.css('padding-right').replace(/px/g,"") * 1);
+
+        var height = element.height()
+                + (element.css('padding-top').replace(/px/g,"") * 1)
+                + (element.css('padding-bottom').replace(/px/g,"") * 1);
+
+        var position = element.position();
+
+
+        var bg = $('<div id="for-edit-bg" class="text-center"><a href="">123</a></div>');
+        bg.width(width);
+        bg.height(height);
+        bg.position(position);
+        bg.css('background', 'green');
+        bg.css('border-radius', '5px');
+        bg.css('position', 'absolute');
+        bg.css('left', position.left);
+        bg.css('top', position.top + (element.css('margin-top').replace(/px/g,"") * 1));
+
+        bg.insertAfter(element);
+    }
+
+    $(document).ready(function() {
+        //console.log('I work!');
+
+
+
+        $('.for-edit').hover(
+                function() {
+                    cloneElement($(this));
+                }
+        );
+    });
+</script>
 </body>
 </html>

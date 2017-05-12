@@ -1,44 +1,46 @@
 <?php
 namespace App\Repository;
 
-
-use App\Models\Header;
-use App\Models\Product;
+use App\Models\Benefits;
+use App\Models\Label;
 use Prettus\Repository\Eloquent\BaseRepository;
 
-class ProductRepository extends BaseRepository
+class LabelRepository extends BaseRepository
 {
     /**
      * @return string
      */
     public function model()
     {
-        return Product::class;
-    }
-
-    public function get()
-    {
-        $list = Header::where('visible', 1)
-            ->orderBy('id')
-            ->first();
-
-       return ($list === null) ? [] : $list->toArray();
+        return Label::class;
     }
 
     public function getList()
     {
-        return (array)Product::where('visible', 1)
+        $list = Label::select(["visible", "name", "label"])
+            ->where('visible', 1)
             ->orderBy('priority', 'desc')
-            ->get()
-            ->toArray();
+            ->get();
+
+        if ($list === null) {
+            return [];
+        }
+
+        return $list->toArray();
     }
 
     public function getAllList()
     {
-        return Benefits::orderBy('visible', 'desc')
+        $list = Label::select(["visible", "name", "label"])
+            ->orderBy('visible', 'desc')
             ->orderBy('priority', 'desc')
             ->get();
 
+        if ($list === null) {
+            return [];
+        }
+
+        return $list->toArray();
     }
 
     public function add(array $data)

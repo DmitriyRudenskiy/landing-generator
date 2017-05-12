@@ -1,0 +1,42 @@
+{% extends "admin.layout.base" %}
+
+{% block title %}Редактирование параметров товара{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-lg-5 col-md-7">
+            <h1>Редактирование параметров товара</h1>
+
+            <form class="form-horizontal" method="post" action="{{ route('admin_label_update') }}">
+                <input type="hidden" name="id" value="{{ model.id }}">
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Приоритет</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="priority" value="{{ model.priority }}" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Параметр</label>
+                    <div class="col-sm-9">
+                        <p class="form-control-static">{{ model.name }}</p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Значение</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="label" value="{{ model.label }}" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-3 col-sm-9">
+                        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Сохранить</button>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

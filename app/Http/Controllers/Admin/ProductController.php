@@ -1,8 +1,10 @@
 <?php
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Label;
 use App\Models\PrefixInterface;
 use App\Models\Product;
+use App\Repository\LabelRepository;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Http\Request;
 use App\Repository\ProductRepository;
@@ -16,30 +18,63 @@ class ProductController extends Controller implements PrefixInterface
     /**
      * @var ProductRepository
      */
-    private $repository;
+    private $productRepository;
 
-    public function __construct(ProductRepository $repository)
+    /**
+     * @var LabelRepository
+     */
+    private $labelRepository;
+
+    public function __construct(ProductRepository $productRepository, LabelRepository $labelRepository)
     {
-        $this->repository = $repository;
+        $this->productRepository = $productRepository;
+        $this->labelRepository = $labelRepository;
     }
 
     public function index()
     {
-        $list = $this->repository->all();
+        $label = $this->labelRepository->getAllList();
+        $list = $this->productRepository->all();
 
-        return view('admin.product.index', ['list' => $list]);
+        return view(
+            'admin.product.index',
+            [
+                'list' => $list,
+                'label' => $label
+            ]
+        );
     }
 
     public function add()
     {
-        return view('admin.product.add', ['model' => []]);
+        $label = $this->labelRepository->getAllList();
+
+        return view(
+            'admin.product.add',
+            [
+                'model' => [],
+                'label' => $label
+            ]
+        );
     }
 
     public function edit($id)
     {
-        $model = $this->repository->find($id);
+        $model = $this->productRepository->find($id);
 
-        return view('admin.product.edit', ['model' => $model]);
+        $label = Label::select(["visible", "name", "label"])
+            ->orderBy('visible', 'desc')
+            ->orderBy('priority', 'desc')
+            ->get()
+            ->toArray();
+
+        return view(
+            'admin.product.edit',
+            [
+                'model' => $model,
+                'label' => $label
+            ]
+        );
     }
 
     public function insert(Request $request)
@@ -59,7 +94,7 @@ class ProductController extends Controller implements PrefixInterface
             )
         );
 
-        $model = $this->repository->add($data);
+        $model = $this->productRepository->add($data);
 
         if ($model instanceof Product && $model->id > 0) {
             return redirect()->route('admin_product_edit', ['id' => $model->id]);
@@ -88,7 +123,7 @@ class ProductController extends Controller implements PrefixInterface
             )
         );
 
-        $this->repository->update($data, $id);
+        $this->productRepository->update($data, $id);
 
         return redirect()->route('admin_product_index');
     }
@@ -102,7 +137,7 @@ class ProductController extends Controller implements PrefixInterface
     public function photo(Request $request, Filesystem $filesystem)
     {
         $id = $request->get('id');
-        $model = $this->repository->find($id);
+        $model = $this->productRepository->find($id);
 
         /* @var \Illuminate\Http\UploadedFile $file */
         $file = Input::file('image');
@@ -141,7 +176,7 @@ class ProductController extends Controller implements PrefixInterface
 
     public function hide($id)
     {
-        $model = $this->repository->find($id);
+        $model = $this->productRepository->find($id);
         $model->visible = 0;
         $model->save();
 
@@ -150,7 +185,7 @@ class ProductController extends Controller implements PrefixInterface
 
     public function show($id)
     {
-        $model = $this->repository->find($id);
+        $model = $this->productRepository->find($id);
         $model->visible = 1;
         $model->save();
 

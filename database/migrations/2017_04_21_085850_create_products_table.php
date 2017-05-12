@@ -16,7 +16,7 @@ class CreateProductsTable extends Migration
             $table->increments('id');
             $table->boolean('visible');
             $table->integer('priority')->default(10);
-            $table->string('cover')->nullable();
+            $table->string('photo')->nullable();
             $table->string('equipment');
             $table->string('engine');
             $table->string('power');

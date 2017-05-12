@@ -14,7 +14,7 @@ class CreateProductsLabelTable extends Migration
     {
         Schema::create('products_label', function (Blueprint $table) {
             $table->increments('id');
-            $table->boolean('visible');
+            $table->boolean('visible')->default(false);
             $table->integer('priority')->default(10);
             $table->string('name');
             $table->string('label');

@@ -3,32 +3,17 @@
 
 {% for item in list %}
 <div class="row" style="border: 2px solid #445B9F; border-radius: 50px; margin: 24px 100px; padding: 25px;">
-    <div class="col-md-3" >
-        <img src="{{ item.path() }}" alt="..." width="250">
+    <div class="col-md-5" >
+        <img src="{{ item.path }}" alt="..." width="100%">
     </div>
 
     <div class="col-md-7" >
         <dl class="dl-horizontal">
-            <dt>Комплектация:</dt>
-            <dd>{{ item.equipment }}</dd>
 
-            <dt>Двигатель:</dt>
-            <dd>{{ item.engine }}</dd>
-
-            <dt>Мощность:</dt>
-            <dd>{{ item.power }}</dd>
-
-            <dt>Трансмиссия:</dt>
-            <dd>{{ item.transmission }}</dd>
-
-            <dt>Привод:</dt>
-            <dd>{{ item.drive_unit }}</dd>
-
-            <dt>Тип кузова:</dt>
-            <dd>{{ item.body_type }}</dd>
-
-            <dt>Цвет:</dt>
-            <dd>{{ item.colour }}</dd>
+            {% for value in label %}
+                <dt>{{ value.label }}:</dt>
+                <dd>{{ item[value.name] }}</dd>
+            {% endfor %}
         </dl>
     </div>
 </div>

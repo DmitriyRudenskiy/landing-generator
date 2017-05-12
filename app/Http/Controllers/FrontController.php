@@ -11,6 +11,8 @@ class FrontController extends Controller
     {
         $data = $builder->init()->get();
 
+        //dd($data->getProducts());
+
         return view('front.index', ['data' => $data]);
     }
 }

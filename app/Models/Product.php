@@ -31,4 +31,12 @@ class Product extends Model implements PrefixInterface
             . DIRECTORY_SEPARATOR
             . $this->photo;
     }
+
+    public function toArray()
+    {
+        $data = parent::toArray();
+        $data['path'] = $this->getPath();
+
+        return $data;
+    }
 }

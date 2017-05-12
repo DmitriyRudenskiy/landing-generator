@@ -14,7 +14,6 @@ $app->group(['prefix' => 'admin', 'namespace' => 'App\Http\Controllers\Admin'], 
     $app->get('/benefits/edit/{id}', ['as' => 'admin_benefits_edit', 'uses' => 'BenefitController@edit']);
     $app->post('/benefits/insert', ['as' => 'admin_benefits_insert', 'uses' => 'BenefitController@insert']);
     $app->post('/benefits/update', ['as' => 'admin_benefits_update', 'uses' => 'BenefitController@update']);
-    $app->post('/benefits/remove', ['as' => 'admin_benefits_remove', 'uses' => 'BenefitController@remove']);
     $app->post('/benefits/cover', ['as' => 'admin_benefits_cover', 'uses' => 'BenefitController@cover']);
     $app->get('/benefits/hide/{id}', ['as' => 'admin_benefits_hide', 'uses' => 'BenefitController@hide']);
     $app->get('/benefits/show/{id}', ['as' => 'admin_benefits_show', 'uses' => 'BenefitController@show']);
@@ -25,7 +24,6 @@ $app->group(['prefix' => 'admin', 'namespace' => 'App\Http\Controllers\Admin'], 
     $app->get('/header/edit/{id}', ['as' => 'admin_header_edit', 'uses' => 'HeaderController@edit']);
     $app->post('/header/insert', ['as' => 'admin_header_insert', 'uses' => 'HeaderController@insert']);
     $app->post('/header/update', ['as' => 'admin_header_update', 'uses' => 'HeaderController@update']);
-    $app->post('/header/remove', ['as' => 'admin_header_remove', 'uses' => 'HeaderController@remove']);
     $app->post('/header/bg', ['as' => 'admin_header_bg', 'uses' => 'HeaderController@bg']);
     $app->get('/header/show/{id}', ['as' => 'admin_header_show', 'uses' => 'HeaderController@show']);
 
@@ -35,14 +33,17 @@ $app->group(['prefix' => 'admin', 'namespace' => 'App\Http\Controllers\Admin'], 
     $app->get('/product/edit/{id}', ['as' => 'admin_product_edit', 'uses' => 'ProductController@edit']);
     $app->post('/product/insert', ['as' => 'admin_product_insert', 'uses' => 'ProductController@insert']);
     $app->post('/product/update', ['as' => 'admin_product_update', 'uses' => 'ProductController@update']);
-    $app->post('/product/remove', ['as' => 'admin_product_remove', 'uses' => 'ProductController@remove']);
-
     $app->post('/product/photo', ['as' => 'admin_product_photo', 'uses' => 'ProductController@photo']);
     $app->get('/product/hide/{id}', ['as' => 'admin_product_hide', 'uses' => 'ProductController@hide']);
     $app->get('/product/show/{id}', ['as' => 'admin_product_show', 'uses' => 'ProductController@show']);
 
+    // надписи для товаров
+    $app->get('/product/label', ['as' => 'admin_label_index', 'uses' => 'LabelController@index']);
+    $app->get('/product/label/edit/{id}', ['as' => 'admin_label_edit', 'uses' => 'LabelController@edit']);
+    $app->post('/product/label/update', ['as' => 'admin_label_update', 'uses' => 'LabelController@update']);
+    $app->get('/product/label/hide/{id}', ['as' => 'admin_label_hide', 'uses' => 'LabelController@hide']);
+    $app->get('/product/label/show/{id}', ['as' => 'admin_label_show', 'uses' => 'LabelController@show']);
+
     // онлайн редактирование
     $app->get('/angular', ['as' => 'admin_angular', 'uses' => 'AngularController@index']);
-
-
 });

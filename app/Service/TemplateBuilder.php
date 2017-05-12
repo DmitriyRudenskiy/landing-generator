@@ -5,6 +5,7 @@ namespace App\Service;
 use App\Entity\TemplateData;
 use App\Repository\BenefitsRepository;
 use App\Repository\HeaderRepository;
+use App\Repository\LabelRepository;
 use App\Repository\ProductRepository;
 
 class TemplateBuilder
@@ -25,6 +26,11 @@ class TemplateBuilder
     private $productRepository;
 
     /**
+     * @var
+     */
+    private $labelRepository;
+
+    /**
      * @var TemplateData
      */
     private $result;
@@ -35,14 +41,17 @@ class TemplateBuilder
      * @param BenefitsRepository $benefitsRepository
      * @param HeaderRepository $headerRepository
      * @param ProductRepository $productRepository
+     * @param LabelRepository $labelRepository
      */
     public function __construct(BenefitsRepository $benefitsRepository,
                                 HeaderRepository $headerRepository,
-                                ProductRepository $productRepository)
+                                ProductRepository $productRepository,
+                                LabelRepository $labelRepository)
     {
         $this->benefitsRepository = $benefitsRepository;
         $this->headerRepository = $headerRepository;
         $this->productRepository = $productRepository;
+        $this->labelRepository = $labelRepository;
         $this->result = new TemplateData();
     }
 
@@ -72,6 +81,7 @@ class TemplateBuilder
         // Устанавливаем товары
         $this->result->setProducts(
             $this->productRepository->getList(),
+            $this->labelRepository->getList(),
             'Шведские стенки для взрослых и детей'
         );
 

@@ -87,7 +87,9 @@ class Menu extends Model implements PrefixInterface
 
     public static function getItems()
     {
-        return self::where('type_id', self::TYPE_ITEM)->get();
+        return self::where('type_id', self::TYPE_ITEM)
+            ->orderBy('priority', 'desc')
+            ->get();
     }
 
     public function getPath()

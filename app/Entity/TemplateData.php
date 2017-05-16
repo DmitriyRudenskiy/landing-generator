@@ -20,17 +20,23 @@ class TemplateData
      */
     private $products;
 
-
     /**
      * @var
      */
     private $reviews;
+
+    private $menu;
 
     public function __construct()
     {
         $this->benefits = ['list' => []];
         $this->products = ['list' => []];
         $this->reviews = ['list' => []];
+        $this->menu = [
+            'logo' => [],
+            'phone' => [],
+            'list'=> []
+        ];
     }
 
     public function setHeader($header)
@@ -94,4 +100,26 @@ class TemplateData
     {
         return $this->reviews;
     }
+
+    /**
+     * @return array
+     */
+    public function getMenu()
+    {
+        return $this->menu;
+    }
+
+    /**
+     * @param array $menu
+     */
+    public function setMenu($logo, $items, $phone)
+    {
+        $this->menu = [
+            'logo' => $logo,
+            'phone' => $phone,
+            'list'=> $items
+        ];
+    }
+
+
 }

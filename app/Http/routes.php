@@ -49,6 +49,8 @@ $app->group(['prefix' => 'admin', 'namespace' => 'App\Http\Controllers\Admin'], 
     $app->post('/menu/insert', ['as' => 'admin_menu_insert', 'uses' => 'MenuController@insert']);
     $app->post('/menu/update', ['as' => 'admin_menu_update', 'uses' => 'MenuController@update']);
     $app->post('/menu/logo', ['as' => 'admin_menu_logo', 'uses' => 'MenuController@logo']);
+    $app->post('/menu/phone', ['as' => 'admin_menu_phone', 'uses' => 'MenuController@phone']);
+    $app->get('/menu/remove/{id}', ['as' => 'admin_menu_remove', 'uses' => 'MenuController@remove']);
 
     // онлайн редактирование
     $app->get('/angular', ['as' => 'admin_angular', 'uses' => 'AngularController@index']);

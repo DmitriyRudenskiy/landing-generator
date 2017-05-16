@@ -3,6 +3,7 @@
 namespace App\Service;
 
 use App\Entity\TemplateData;
+use App\Models\Menu;
 use App\Repository\BenefitsRepository;
 use App\Repository\HeaderRepository;
 use App\Repository\LabelRepository;
@@ -30,6 +31,12 @@ class TemplateBuilder
      */
     private $labelRepository;
 
+
+    /**
+     * @var Menu
+     */
+    private $menuRepository;
+
     /**
      * @var TemplateData
      */
@@ -37,21 +44,23 @@ class TemplateBuilder
 
     /**
      * TemplateBuilder constructor.
-     *
      * @param BenefitsRepository $benefitsRepository
      * @param HeaderRepository $headerRepository
      * @param ProductRepository $productRepository
      * @param LabelRepository $labelRepository
+     * @param Menu $menuRepository
      */
     public function __construct(BenefitsRepository $benefitsRepository,
                                 HeaderRepository $headerRepository,
                                 ProductRepository $productRepository,
-                                LabelRepository $labelRepository)
+                                LabelRepository $labelRepository,
+                                Menu $menuRepository)
     {
         $this->benefitsRepository = $benefitsRepository;
         $this->headerRepository = $headerRepository;
         $this->productRepository = $productRepository;
         $this->labelRepository = $labelRepository;
+        $this->menuRepository = $menuRepository;
         $this->result = new TemplateData();
     }
 
@@ -102,6 +111,14 @@ class TemplateBuilder
         ];
 
         $this->result->setReviews($reviews);
+
+
+        // Устанавливаем меню
+        $this->result->setMenu(
+            $this->menuRepository->getLogo(),
+            $this->menuRepository->getItems(),
+            $this->menuRepository->getPhone()
+        );
 
         return $this;
     }

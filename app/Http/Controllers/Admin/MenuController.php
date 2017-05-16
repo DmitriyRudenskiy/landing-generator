@@ -28,8 +28,6 @@ class MenuController extends Controller implements PrefixInterface
         $phone = $this->repository->getPhone();
         $items = $this->repository->getItems();
 
-        // dd($items);
-
         return view(
             'admin.menu.index',
             [
@@ -55,6 +53,17 @@ class MenuController extends Controller implements PrefixInterface
         return redirect()->route('admin_menu_index');
     }
 
+    public function phone(Request $request)
+    {
+        $phone = trim($request->get('phone'));
+
+        $model = Menu::getPhone();
+        $model->title = $phone;
+        $model->save();
+
+        return redirect()->route('admin_menu_index');
+    }
+
     public function update(Request $request)
     {
         $id = $request->get('id');
@@ -64,8 +73,6 @@ class MenuController extends Controller implements PrefixInterface
             'trim',
             $request->only(['priority', 'title', 'description'])
         );
-
-        dd($data);
 
         $model->update($data);
 
@@ -108,6 +115,17 @@ class MenuController extends Controller implements PrefixInterface
         // сохраняем изображение
         $image = (new Imagine())->open($file->path());
         $image->save($path);
+
+        return redirect()->route('admin_menu_index');
+    }
+
+    public function remove($id)
+    {
+        $model = $this->repository->find($id);
+
+        if ($model !== null) {
+            $model->delete();
+        }
 
         return redirect()->route('admin_menu_index');
     }

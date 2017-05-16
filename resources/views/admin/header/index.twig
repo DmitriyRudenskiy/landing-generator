@@ -60,3 +60,18 @@
         </div>
     </div>
 {% endblock %}
+
+{% block script %}
+    <script>
+        $(document).ready(function(){
+            $('textarea').keyup(function(){
+
+                var text = $(this).val().trim();
+
+                if (text.length > 10) {
+                    alert('Много текста');
+                }
+            });
+        });
+    </script>
+{% endblock %}

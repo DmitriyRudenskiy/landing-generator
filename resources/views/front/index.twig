@@ -97,28 +97,42 @@
             <div class="modal-body text-center">
                 <p class="text-right"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></p>
 
-                <h3>Оформить заказ</h3>
-                <p>Заполните форму, и мы перезвоним Вам в течение 15 минут!</p>
+                <div>
+                    <h3>Оформить заказ</h3>
+                    <p>Заполните форму, и мы перезвоним Вам в течение 15 минут!</p>
 
-                <form>
-                    <div class="form-group">
-                        <label class="text-left">Ваше имя:</label>
-                        <input type="text" name="name" class="form-control" placeholder="Иван">
-                    </div>
-                    <div class="form-group">
-                        <label class="text-left">Телефон:</label>
-                        <input type="text" name="phone" class="form-control" placeholder="+7 (000) 000-0000">
-                    </div>
-                    <button type="submit" class="btn btn-warning">Купить</button>
-                </form>
+                    <form>
+                        <div class="form-group text-left">
+                            <label>Ваше имя:</label>
+                            <input type="text" name="name" class="form-control" placeholder="Иван" required>
+                        </div>
+                        <div class="form-group text-left">
+                            <label class="text-left">Телефон:</label>
+                            <input type="text" name="phone" class="form-control" placeholder="+7 (000) 000-0000" required>
+                        </div>
+                        <button type="submit" class="btn btn-warning">Купить</button>
+                    </form>
 
-                <p style="padding-top: 24px; font-size: 80%">Ваши контактные данные в безопасности<br>и не будут переданы третьим лицам</p>
+                    <p style="padding-top: 24px; font-size: 80%">Ваши контактные данные в безопасности<br>и не будут переданы третьим лицам</p>
+                </div>
             </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+        </div>
+    </div>
+</div>
 
 <script src="/js/jquery.js"></script>
 <script src="/js/bootstrap.min.js"></script>
+
+<script>
+    $(document).ready(function(){
+        $('#get_phone form').submit(function() {
+
+            $('<div>').addClass('text-success').html('<h2><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Наш менеджер уже набирает ваш телефон</h2>').insertAfter($(this).parent());
+            $(this).parent().hide();
+
+            return false;
+        });
+    });
+</script>
 </body>
 </html>

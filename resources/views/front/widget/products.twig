@@ -4,7 +4,8 @@
 {% for item in list %}
 <div class="row" style="border: 2px solid #445B9F; border-radius: 50px; margin: 24px 100px; padding: 25px;">
     <div class="col-md-5" >
-        <img src="{{ item.path }}" alt="..." width="100%">
+        <p><img src="{{ item.path }}" alt="..." width="100%"></p>
+        <p><button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#get_phone">Купить</button></p>
     </div>
 
     <div class="col-md-7" >

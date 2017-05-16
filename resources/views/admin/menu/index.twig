@@ -1,0 +1,93 @@
+{% extends "admin.layout.base" %}
+
+{% block title %}Меню сайта{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-lg-6 col-md-10">
+            <h1>Меню сайта</h1>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-lg-7 col-md-12">
+
+            <div class="row">
+                <div class="col-md-3">
+                    <h3>Логотип</h3>
+                    <p>
+                        {% if logo.title is not empty %}
+                            <img id="upload_image" src="{{ logo.path() }}" alt="Загрузить изображение" class="img-thumbnail" style="cursor: pointer">
+                        {% else %}
+                            <img id="upload_image" src="/img/admin/upload_image.jpg" alt="Загрузить изображение" class="img-thumbnail" style="cursor: pointer">
+                        {% endif %}
+                    </p>
+
+                    <form action="{{ route('admin_menu_logo') }}" method="post" enctype="multipart/form-data" style="display: none">
+                        <input type="file" name="image" onchange="this.form.submit()">
+                    </form>
+
+                    <p class="help-block">Нажмите на изображение для загрузки картинки</p>
+
+                    <h3>Телефон</h3>
+                    <div class="well">
+                        <textarea class="form-control" rows="3"></textarea>
+                    </div>
+                </div>
+
+                <div class="col-md-9">
+                    <h3>Пункты меню</h3>
+
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Приоритет</th>
+                            <th>Написание</th>
+                            <th>Адрес</th>
+                            <th></th>
+                        </tr>
+
+                        <form method="post" action="{{ route('admin_menu_insert') }}">
+                        <tr>
+                            <th style="width: 100px;"><input type="text" name="priority" class="form-control" value="10" required></th>
+                            <th><input type="text" name="title" class="form-control" value="" required></th>
+                            <th><input type="text" name="url" class="form-control" value="" required></th>
+                            <th><button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button></th>
+                        </tr>
+                        </form>
+                        </thead>
+                        <tbody>
+                        {% for item in list %}
+                        <form method="post" action="{{ route('admin_menu_update') }}">
+                            <input type="hidden" name="id" value="{{ item.id }}">
+                            <tr>
+                                <td><input type="text" name="priority" class="form-control" value="{{ item.priority }}" required></td>
+                                <td><input type="text" name="title" class="form-control" value="{{ item.title }}" required></td>
+                                <td><input type="text" name="url" class="form-control" value="{{ item.url }}" required></td>
+                                <td class="text-right text-nowrap">
+                                    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span></button>
+                                </td>
+                            </tr>
+                            </form>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script>
+        $(document).ready(function(){
+            $('#upload_image').click(function(){
+                $('[type="file"]').click();
+            });
+        });
+    </script>
+{% endblock %}

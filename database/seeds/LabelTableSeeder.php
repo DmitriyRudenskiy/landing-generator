@@ -7,7 +7,8 @@ class LabelTableSeeder extends Seeder
     public function run()
     {
         $data = [
-            ['priority' => 10,
+            [
+                'priority' => 10,
                 'name' => 'equipment',
                 'label' => 'Комплектация'
 
@@ -33,7 +34,7 @@ class LabelTableSeeder extends Seeder
                 'label' => 'Привод'
             ],
             [
-                'priority' => 150,
+                'priority' => 10,
                 'name' => 'body_type',
                 'label' => 'Тип кузова'
             ],

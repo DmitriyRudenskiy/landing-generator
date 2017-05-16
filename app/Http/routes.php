@@ -44,6 +44,12 @@ $app->group(['prefix' => 'admin', 'namespace' => 'App\Http\Controllers\Admin'], 
     $app->get('/product/label/hide/{id}', ['as' => 'admin_label_hide', 'uses' => 'LabelController@hide']);
     $app->get('/product/label/show/{id}', ['as' => 'admin_label_show', 'uses' => 'LabelController@show']);
 
+    // меню ландига
+    $app->get('/menu', ['as' => 'admin_menu_index', 'uses' => 'MenuController@index']);
+    $app->post('/menu/insert', ['as' => 'admin_menu_insert', 'uses' => 'MenuController@insert']);
+    $app->post('/menu/update', ['as' => 'admin_menu_update', 'uses' => 'MenuController@update']);
+    $app->post('/menu/logo', ['as' => 'admin_menu_logo', 'uses' => 'MenuController@logo']);
+
     // онлайн редактирование
     $app->get('/angular', ['as' => 'admin_angular', 'uses' => 'AngularController@index']);
 });

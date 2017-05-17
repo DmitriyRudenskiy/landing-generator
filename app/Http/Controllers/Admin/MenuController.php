@@ -71,7 +71,7 @@ class MenuController extends Controller implements PrefixInterface
 
         $data = array_map(
             'trim',
-            $request->only(['priority', 'title', 'description'])
+            $request->only(['priority', 'title', 'url'])
         );
 
         $model->update($data);

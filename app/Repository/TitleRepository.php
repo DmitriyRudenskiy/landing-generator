@@ -31,7 +31,7 @@ class TitleRepository extends BaseRepository
 
     public function add($id, $key, $value)
     {
-        $title = $this->find($id);
+        $title = Title::where('id', $id)->first();
 
         if ($title !== null) {
 

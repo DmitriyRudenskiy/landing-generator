@@ -8,6 +8,7 @@ use App\Repository\BenefitsRepository;
 use App\Repository\HeaderRepository;
 use App\Repository\LabelRepository;
 use App\Repository\ProductRepository;
+use App\Repository\TitleRepository;
 
 class TemplateBuilder
 {
@@ -38,6 +39,11 @@ class TemplateBuilder
     private $menuRepository;
 
     /**
+     * @var
+     */
+    private $titleRepository;
+
+    /**
      * @var TemplateData
      */
     private $result;
@@ -49,18 +55,21 @@ class TemplateBuilder
      * @param ProductRepository $productRepository
      * @param LabelRepository $labelRepository
      * @param Menu $menuRepository
+     * @param TitleRepository $titleRepository
      */
     public function __construct(BenefitsRepository $benefitsRepository,
                                 HeaderRepository $headerRepository,
                                 ProductRepository $productRepository,
                                 LabelRepository $labelRepository,
-                                Menu $menuRepository)
+                                Menu $menuRepository,
+                                TitleRepository $titleRepository)
     {
         $this->benefitsRepository = $benefitsRepository;
         $this->headerRepository = $headerRepository;
         $this->productRepository = $productRepository;
         $this->labelRepository = $labelRepository;
         $this->menuRepository = $menuRepository;
+        $this->titleRepository = $titleRepository;
         $this->result = new TemplateData();
     }
 
@@ -69,6 +78,8 @@ class TemplateBuilder
      */
     public function init()
     {
+        $titleList = $this->titleRepository->getList();
+        $this->result->setTitle($titleList);
 
         // Устанавливаем шапку
         $this->result->setHeader($this->headerRepository->get());
@@ -87,11 +98,17 @@ class TemplateBuilder
 
         $this->result->setBenefits($benefits);
 
+        $productTitle = '';
+
+        if (!empty($titleList['title_product'])) {
+            $productTitle = $titleList['title_product'];
+        }
+
         // Устанавливаем товары
         $this->result->setProducts(
             $this->productRepository->getList(),
             $this->labelRepository->getList(),
-            'Полный модельный ряд MITSUBISHI FUSO CANTER'
+            $productTitle
         );
 
         // Устанавливаем отзывы
@@ -111,7 +128,6 @@ class TemplateBuilder
         ];
 
         $this->result->setReviews($reviews);
-
 
         // Устанавливаем меню
         $this->result->setMenu(

@@ -25,7 +25,15 @@ class TemplateData
      */
     private $reviews;
 
+    /**
+     * @var array
+     */
     private $menu;
+
+    /**
+     * @var
+     */
+    private $title;
 
     public function __construct()
     {
@@ -37,6 +45,8 @@ class TemplateData
             'phone' => [],
             'list'=> []
         ];
+
+        $this->title = [];
     }
 
     public function setHeader($header)
@@ -121,5 +131,19 @@ class TemplateData
         ];
     }
 
+    /**
+     * @return mixed
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
 
+    /**
+     * @param mixed $title
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    }
 }

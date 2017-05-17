@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>One Page Wonder - Start Bootstrap Template</title>
+    <title>{{ data.title.title_mime }}</title>
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;subset=cyrillic" rel="stylesheet">
 
@@ -66,7 +66,9 @@
         {% include 'front/widget/products.twig' with data.products only %}
     {% endif %}
 
-    <p class="text-center" style="margin-top: 24px; margin-bottom: 48px"><button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#get_phone">Получить просчет лучшей цены</button></p>
+
+
+    <p class="text-center" style="margin-top: 24px; margin-bottom: 48px"><button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#get_phone">{{ data.title.title_down_button }}</button></p>
 
 </div>
 

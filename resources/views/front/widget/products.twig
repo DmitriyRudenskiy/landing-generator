@@ -9,13 +9,16 @@
     </div>
 
     <div class="col-md-7" >
-        <dl class="dl-horizontal">
-
+        <table class="table table-hover table-striped">
+            <tbody>
             {% for value in label %}
-                <dt>{{ value.label }}:</dt>
-                <dd>{{ item[value.name] }}</dd>
+                <tr>
+                    <th>{{ value.label }}:</th>
+                    <td>{{ item[value.name] }}</td>
+                </tr>
             {% endfor %}
-        </dl>
+            </tbody>
+        </table>
     </div>
 </div>
 {% endfor %}

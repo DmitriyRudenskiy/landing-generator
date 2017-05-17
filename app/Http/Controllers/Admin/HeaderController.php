@@ -46,7 +46,7 @@ class HeaderController extends Controller implements PrefixInterface
     {
         $data = array_map(
             'trim',
-            $request->only(['title', 'sub_title'])
+            $request->only(['title', 'sub_title', 'description', 'button', 'add_1', 'add_2', 'add_3'])
         );
 
         $model = $this->repository->add($data);
@@ -64,7 +64,7 @@ class HeaderController extends Controller implements PrefixInterface
 
         $data = array_map(
             'trim',
-            $request->only(['title', 'sub_title'])
+            $request->only(['title', 'sub_title', 'description', 'button', 'add_1', 'add_2', 'add_3'])
         );
 
         $this->repository->update($data, $id);

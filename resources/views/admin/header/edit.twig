@@ -37,6 +37,31 @@
                     <textarea class="form-control" rows="7" name="sub_title" required>{{ model.sub_title }}</textarea>
                 </div>
 
+                <div class="form-group">
+                    <label>Текст</label>
+                    <textarea class="form-control" rows="7" name="description">{{ model.description }}</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Надпись на кнопке</label>
+                    <input type="text" name="button" class="form-control" value="{{ model.button }}">
+                </div>
+
+                <div class="form-group">
+                    <label>Первая картинка</label>
+                    <textarea class="form-control" rows="7" name="add_1">{{ model.add_1 }}</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Вторая картинка</label>
+                    <textarea class="form-control" rows="7" name="add_2">{{ model.add_2 }}</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Третья картинка</label>
+                    <textarea class="form-control" rows="7" name="add_3">{{ model.add_3 }}</textarea>
+                </div>
+
                 <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Создать</button>
             </form>
         </div>

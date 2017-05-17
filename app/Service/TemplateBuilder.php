@@ -91,7 +91,7 @@ class TemplateBuilder
         $this->result->setProducts(
             $this->productRepository->getList(),
             $this->labelRepository->getList(),
-            'Шведские стенки для взрослых и детей'
+            'Полный модельный ряд MITSUBISHI FUSO CANTER'
         );
 
         // Устанавливаем отзывы

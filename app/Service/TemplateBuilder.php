@@ -91,7 +91,7 @@ class TemplateBuilder
         $this->result->setProducts(
             $this->productRepository->getList(),
             $this->labelRepository->getList(),
-            'Полный модельный ряд mitsubishi fuso canter'
+            'Полный модельный ряд MITSUBISHI FUSO CANTER'
         );
 
         // Устанавливаем отзывы

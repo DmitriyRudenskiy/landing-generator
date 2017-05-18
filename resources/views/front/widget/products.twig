@@ -1,5 +1,8 @@
-<h2 class="text-center for-edit" style="margin-top: 48px; line-height: 38px; text-align: center; color: #445B9F;">{{ title }}</h2>
-
+<div class="row">
+    <div class="col-md-7">
+        <h2 class="text-center for-edit" style="margin-top: 48px; line-height: 38px; text-align: center; color: #445B9F;">{{ title }}</h2>
+    </div>
+</div>
 
 {% for item in list %}
 <div class="row" style="border: 2px solid #445B9F; border-radius: 50px; margin: 24px 100px; padding: 25px;">
@@ -8,7 +11,7 @@
         <p><button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#get_phone">Расчитать стоимость</button></p>
     </div>
 
-    <div class="col-md-7" >
+    <div class="col-md-7">
         <table class="table table-hover table-striped">
             <tbody>
             {% for value in label %}

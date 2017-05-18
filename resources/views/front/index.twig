@@ -126,6 +126,15 @@
             $('<div>').addClass('text-success').html('<h2><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Наш менеджер уже набирает ваш телефон</h2>').insertAfter($(this).parent());
             $(this).parent().hide();
 
+            $.ajax({
+                url: "/need/call",
+                type: "POST",
+                data: $(this).serialize(),
+                success: function(data){
+                    console.log(data);
+                }
+            });
+
             return false;
         });
     });

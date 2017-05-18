@@ -15,7 +15,7 @@ class CreateTitleTable extends Migration
         Schema::create('title', function (Blueprint $table) {
             $table->increments('id');
             $table->string('key')->unique();
-            $table->string('value')->nullable();
+            $table->text('value')->nullable();
             $table->timestamps();
         });
     }

@@ -3,7 +3,7 @@
 {% block content %}
     {% include 'front/widget/menu.twig' with data.menu only %}
 
-    <div class="container">
+    <div class="container" style="padding-top: 48px;">
         {% if data.products is not empty %}
             {% include 'front/widget/products.twig' with data.products only %}
         {% endif %}

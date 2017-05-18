@@ -15,11 +15,8 @@
         {% if data.products is not empty %}
             {% include 'front/widget/products.twig' with data.products only %}
         {% endif %}
-
-
-
+        
         <p class="text-center" style="margin-top: 24px; margin-bottom: 48px"><button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#get_phone">{{ data.title.title_down_button }}</button></p>
-
     </div>
 
 {% endblock %}

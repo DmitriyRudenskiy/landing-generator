@@ -1,6 +1,7 @@
 <?php
 
 $app->get('/', 'FrontController@index');
+$app->get('/catalog', 'FrontController@products');
 $app->post('/need/call', 'FrontController@mail');
 
 $app->group(['prefix' => 'admin', 'namespace' => 'App\Http\Controllers\Admin'], function() use ($app)

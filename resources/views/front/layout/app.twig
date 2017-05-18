@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ data.title.title_mime }}</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;subset=cyrillic" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <style>
+        * {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        footer {
+            background-color: #40C6D6;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+{% block content %}{% endblock %}
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <p>ИНН/КПП 5406585215 / 540601001
+                    <br>ОГРН 1155476057021
+                    <br>ООО "Фура.про"
+                    <br>Юридический адрес: г. Новосибирск, ул. Военная, 4, оф. 305
+                    <br>телефон для справок: 8 800 555 59 98</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="get_phone">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <p class="text-right"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></p>
+
+                <div>
+                    <h3>Быстрая помощь<br>дилера</h3>
+                    <p>Специалист быстро рассчитает несколько вариантов лизинга, предложит варианты снижения цены, подберёт комплектацию, проконсультирует по условиям доставки по всей стране</p>
+
+                    <form>
+                        <div class="form-group text-left">
+                            <label>Ваше имя:</label>
+                            <input type="text" name="name" class="form-control" placeholder="Иван" required>
+                        </div>
+                        <div class="form-group text-left">
+                            <label class="text-left">Телефон:</label>
+                            <input type="text" name="phone" class="form-control" placeholder="+7 (000) 000-0000" required>
+                        </div>
+                        <button type="submit" class="btn btn-warning">Позвонить мне быстро</button>
+                    </form>
+
+                    <p style="padding-top: 24px; font-size: 80%">Ваши контактные данные в безопасности<br>и не будут переданы третьим лицам</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/js/jquery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
+<script>
+    $(document).ready(function(){
+        $('#get_phone form').submit(function() {
+
+            $('<div>').addClass('text-success').html('<h2><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Наш менеджер уже набирает ваш телефон</h2>').insertAfter($(this).parent());
+            $(this).parent().hide();
+
+            $.ajax({
+                url: "/need/call",
+                type: "POST",
+                data: $(this).serialize(),
+                success: function(data){
+                    console.log(data);
+                }
+            });
+
+            return false;
+        });
+    });
+</script>
+
+{{ data.title.metrika | raw }}
+
+</body>
+</html>

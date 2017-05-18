@@ -1,0 +1,12 @@
+{% extends "front.layout.app" %}
+
+{% block content %}
+
+    {% include 'front/widget/menu.twig' with data.menu only %}
+
+    <div class="container">
+        {% if data.products is not empty %}
+            {% include 'front/widget/products.twig' with data.products only %}
+        {% endif %}
+    </div>
+{% endblock %}

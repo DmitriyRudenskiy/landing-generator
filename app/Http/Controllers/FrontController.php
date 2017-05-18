@@ -16,6 +16,13 @@ class FrontController extends Controller
         return view('front.index', ['data' => $data]);
     }
 
+    public function products(TemplateBuilder $builder)
+    {
+        $data = $builder->init()->get();
+
+        return view('front.products', ['data' => $data]);
+    }
+
     public function mail(Request $request)
     {
         $data = $request->only('name', 'phone');

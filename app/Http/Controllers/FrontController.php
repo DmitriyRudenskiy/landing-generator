@@ -13,8 +13,6 @@ class FrontController extends Controller
     {
         $data = $builder->init()->get();
 
-        // dd($data->getHeader());
-
         return view('front.index', ['data' => $data]);
     }
 
@@ -30,14 +28,21 @@ class FrontController extends Controller
             'dmitriy.rudenskiy@gmail.com'
         ];
 
+        $body = sprintf(
+            "Заявка на просчёт\n\tИмя: %s\n\tТелефон: %s",
+            $data['name'],
+            $data['phone']
+        );
+
+
         $mgClient = new Mailgun($apiKey);
 
         foreach ($mailList as $value) {
             $mgClient->sendMessage($domain, array(
-                'from'    => 'Что тут написать? <mailgun@atorgi.pro>',
+                'from'    => 'Почтовый агент <mailgun@atorgi.pro>',
                 'to'      => $value,
-                'subject' => 'Пиши текст!',
-                'text'    => 'Продумай шаблон: данные ' .json_encode($data)
+                'subject' => '[' . $request->getHost() . '] Заявка с сайта',
+                'text'    => $body
             ));
         }
 

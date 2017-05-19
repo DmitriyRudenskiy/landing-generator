@@ -3,6 +3,10 @@
 $app->get('/', 'FrontController@index');
 $app->get('/catalog', 'FrontController@products');
 $app->get('/price', 'FrontController@call');
+$app->get('/leasing', 'FrontController@call');
+$app->get('/bonus', 'FrontController@call');
+$app->get('/delivery', 'FrontController@call');
+
 $app->post('/need/call', 'FrontController@mail');
 
 $app->group(['prefix' => 'admin', 'namespace' => 'App\Http\Controllers\Admin'], function() use ($app)

@@ -12,6 +12,8 @@ class Title extends Model
 
     const TILE_MIME = 'title_mime';
 
+    const TILE_REVIEWS = 'title_reviews';
+
     const TILE_PRODUCT = 'title_product';
 
     const TITLE_DOWN_BUTTON = 'title_down_button';
@@ -24,7 +26,8 @@ class Title extends Model
             self::TILE_MIME => 1,
             self::TILE_PRODUCT => 2,
             self::TITLE_DOWN_BUTTON => 3,
-            self::TITLE_YANDEX_METRIKA => 5
+            self::TITLE_YANDEX_METRIKA => 5,
+            self::TILE_REVIEWS => 7
         ];
     }
 }

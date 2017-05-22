@@ -1,49 +1,24 @@
 {% extends "admin.layout.base" %}
 
-{% block title %}Создать новый пост{% endblock %}
+{% block title %}Создать новое "Преимущество"{% endblock %}
 {% block content %}
     <div class="row">
         <div class="col-lg-5 col-md-7">
-            <h1>Просмотр полльзователя</h1>
-
-            <form method="post" action="{{ route('admin_company_insert') }}">
-
+            <h1>Создать новое "Преимущество"</h1>
+            <form method="post" action="{{ route('admin_reviews_insert') }}">
                 <div class="form-group">
-                    <label>Город</label>
-                    <select class="form-control" name="city_id" required>
-                        <option value="">--</option>
-                        {% for city in cities %}
-                            <option value="{{ city.id }}">{{ city.name }}</option>
-                        {% endfor %}
-                    </select>
+                    <label>Имя</label>
+                    <input type="text" name="name" value="" class="form-control" required>
                 </div>
-
                 <div class="form-group">
-                    <label>Название</label>
-                    <input type="text" class="form-control" name="name" required>
+                    <label>Отзыв</label>
+                    <textarea class="form-control" rows="7" name="content" required></textarea>
                 </div>
-
                 <div class="form-group">
-                    <label>Адрес</label>
-                    <input type="text" class="form-control" name="address" required>
+                    <label>Адрес (url)</label>
+                    <input type="text" name="url" value="" class="form-control" required>
                 </div>
-
-                <div class="form-group">
-                    <label>Рабочее время</label>
-                    <input type="text" class="form-control" name="work_times" required>
-                </div>
-
-                <div class="form-group">
-                    <label>Телефон</label>
-                    <input type="text" class="form-control" name="phone" required>
-                </div>
-
-                <div class="form-group">
-                    <label>Сайт</label>
-                    <input type="text" class="form-control" name="site" required>
-                </div>
-
-                <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Сохранить</button>
+                <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Создать</button>
             </form>
         </div>
     </div>

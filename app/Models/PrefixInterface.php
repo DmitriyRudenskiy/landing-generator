@@ -11,4 +11,6 @@ interface PrefixInterface
     const PREFIX_PRODUCTS = 'products';
 
     const PREFIX_MENU_LOGO = 'logo';
+
+    const PREFIX_REVIEWS = 'reviews';
 }

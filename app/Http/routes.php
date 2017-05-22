@@ -65,4 +65,14 @@ $app->group(['prefix' => 'admin', 'namespace' => 'App\Http\Controllers\Admin'], 
 
     // онлайн редактирование
     $app->get('/angular', ['as' => 'admin_angular', 'uses' => 'AngularController@index']);
+
+    // отзывы
+    $app->get('/reviews', ['as' => 'admin_reviews_index', 'uses' => 'ReviewController@index']);
+    $app->get('/reviews/add', ['as' => 'admin_reviews_add', 'uses' => 'ReviewController@add']);
+    $app->get('/reviews/edit/{id}', ['as' => 'admin_reviews_edit', 'uses' => 'ReviewController@edit']);
+    $app->post('/reviews/insert', ['as' => 'admin_reviews_insert', 'uses' => 'ReviewController@insert']);
+    $app->post('/reviews/update', ['as' => 'admin_reviews_update', 'uses' => 'ReviewController@update']);
+    $app->post('/reviews/avatar', ['as' => 'admin_reviews_avatar', 'uses' => 'ReviewController@avatar']);
+    $app->get('/reviews/hide/{id}', ['as' => 'admin_reviews_hide', 'uses' => 'ReviewController@hide']);
+    $app->get('/reviews/show/{id}', ['as' => 'admin_reviews_show', 'uses' => 'ReviewController@show']);
 });

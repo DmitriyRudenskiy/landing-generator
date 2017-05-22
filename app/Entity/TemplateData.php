@@ -71,7 +71,7 @@ class TemplateData
         ];
     }
 
-    public function setReviews(array $list, $title = '')
+    public function setReviews($list, $title = '')
     {
         $this->reviews = [
             'title' => $title,

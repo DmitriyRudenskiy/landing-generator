@@ -8,6 +8,7 @@ use App\Repository\BenefitsRepository;
 use App\Repository\HeaderRepository;
 use App\Repository\LabelRepository;
 use App\Repository\ProductRepository;
+use App\Repository\ReviewsRepository;
 use App\Repository\TitleRepository;
 
 class TemplateBuilder
@@ -32,6 +33,10 @@ class TemplateBuilder
      */
     private $labelRepository;
 
+    /**
+     * @var ReviewsRepository
+     */
+    private $reviewsRepository;
 
     /**
      * @var Menu
@@ -56,13 +61,16 @@ class TemplateBuilder
      * @param LabelRepository $labelRepository
      * @param Menu $menuRepository
      * @param TitleRepository $titleRepository
+     * @param ReviewsRepository $reviewsRepository
      */
     public function __construct(BenefitsRepository $benefitsRepository,
                                 HeaderRepository $headerRepository,
                                 ProductRepository $productRepository,
                                 LabelRepository $labelRepository,
                                 Menu $menuRepository,
-                                TitleRepository $titleRepository)
+                                TitleRepository $titleRepository,
+                                ReviewsRepository $reviewsRepository
+)
     {
         $this->benefitsRepository = $benefitsRepository;
         $this->headerRepository = $headerRepository;
@@ -70,6 +78,7 @@ class TemplateBuilder
         $this->labelRepository = $labelRepository;
         $this->menuRepository = $menuRepository;
         $this->titleRepository = $titleRepository;
+        $this->reviewsRepository = $reviewsRepository;
         $this->result = new TemplateData();
     }
 
@@ -111,23 +120,17 @@ class TemplateBuilder
             $productTitle
         );
 
-        // Устанавливаем отзывы
-        $reviews = [
-            [
-                'avatar' => '/front/005.jpg',
-                'name' => 'Лилия',
-                'text' => 'Спасибо Вам огромное за шведскую стенку! Сына от неё не оттащишь! Комплектация просто отличная! Заглушки болтов и перекладины с покрытием против скольжения. Качество чувствуется в мелочах! За такую цену это самый толковый и укомплектованный детский спортивный комплекс. Буду рекомендовать друзьям!',
-                'url' => 'https://vk.com/id32161717'
-            ],
-            [
-                'avatar' => '',
-                'name' => '',
-                'text' => '',
-                'url' => ''
-            ]
-        ];
+        $reviewsTitle = 'Отзывы посетителей';
 
-        $this->result->setReviews($reviews);
+        if (!empty($titleList['title_reviews'])) {
+            $reviewsTitle = $titleList['title_reviews'];
+        }
+
+        // Устанавливаем отзывы
+        $this->result->setReviews(
+            $this->reviewsRepository->getList(),
+            $reviewsTitle
+        );
 
         // Устанавливаем меню
         $this->result->setMenu(

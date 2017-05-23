@@ -8,15 +8,51 @@
 
     <!-- Page Content -->
     <div class="container">
+
+        {# преимущества #}
         {% if data.benefits is not empty %}
             {% include 'front/widget/benefits.twig' with data.benefits only %}
         {% endif %}
 
+        {# товары #}
         {% if data.products is not empty %}
             {% include 'front/widget/products.twig' with data.products only %}
         {% endif %}
-        
+
+        {# отзывы #}
+        {% if data.benefits is not empty %}
+            {% include 'front/widget/reviews.twig' with data.reviews only %}
+        {% endif %}
+
+        <!--
+        {% include 'front/widget/form.twig' with data.reviews only %}
+        -->
+
         <p class="text-center" style="margin-top: 24px; margin-bottom: 48px"><button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#get_phone">{{ data.title.title_down_button }}</button></p>
+
+
+        {# новый блок #}
+
+        <!--
+        <div class="row" style="padding-bottom: 48px">
+
+            <div class="col-md-8">
+                <img class="img-responsive" src="http://placehold.it/750x500" alt="">
+            </div>
+
+            <div class="col-md-4">
+                <h3>Project Description</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.</p>
+                <h3>Project Details</h3>
+                <ul>
+                    <li>Lorem Ipsum</li>
+                    <li>Dolor Sit Amet</li>
+                    <li>Consectetur</li>
+                    <li>Adipiscing Elit</li>
+                </ul>
+            </div>
+        </div>
+        -->
     </div>
 
 {% endblock %}

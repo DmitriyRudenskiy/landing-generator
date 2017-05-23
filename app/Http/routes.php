@@ -75,4 +75,10 @@ $app->group(['prefix' => 'admin', 'namespace' => 'App\Http\Controllers\Admin'], 
     $app->post('/reviews/avatar', ['as' => 'admin_reviews_avatar', 'uses' => 'ReviewController@avatar']);
     $app->get('/reviews/hide/{id}', ['as' => 'admin_reviews_hide', 'uses' => 'ReviewController@hide']);
     $app->get('/reviews/show/{id}', ['as' => 'admin_reviews_show', 'uses' => 'ReviewController@show']);
+
+    // формы
+    $app->get('/form', ['as' => 'admin_form_index', 'uses' => 'FormController@index']);
+    $app->get('/form/add', ['as' => 'admin_form_add', 'uses' => 'FormController@add']);
+
+    $app->post('/form/insert', ['as' => 'admin_form_insert', 'uses' => 'FormController@insert']);
 });

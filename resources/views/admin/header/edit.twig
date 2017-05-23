@@ -80,12 +80,21 @@
 
     <script>
         $(document).ready(function(){
-            $('textarea').keyup(function(){
+            $('[name=title]').keyup(function(){
+                if ($(this).val().trim().length > 27) {
+                    alert('заглавие(текст), не более 27');
+                }
+            });
 
-                var text = $(this).val().trim();
+            $('[name=sub_title]').keyup(function(){
+                if ($(this).val().trim().length > 72) {
+                    alert('под Заглавием текст не более 72 символов');
+                }
+            });
 
-                if (text.length > 10) {
-                    alert('Много текста');
+            $('[name=description]').keyup(function(){
+                if ($(this).val().trim().length > 123) {
+                    alert('ещё ниже текст не более 123 символов');
                 }
             });
         });

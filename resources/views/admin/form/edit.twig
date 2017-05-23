@@ -1,0 +1,59 @@
+{% extends "admin.layout.base" %}
+
+{% block title %}Редактировать "Преимущество"{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-lg-5 col-md-7">
+            <h1>Редактировать "Преимущество"</h1>
+
+            <div class="form-group">
+                <label>Картинка</label>
+                <p>
+                    {% if model.cover is not empty %}
+                        <img id="upload_image" src="{{ model.path() }}" alt="Загрузить изображение" class="img-thumbnail" style="max-width: 350px; cursor: pointer">
+                    {% else %}
+                        <img id="upload_image" src="/img/admin/upload_image.jpg" alt="Загрузить изображение" class="img-thumbnail" style="cursor: pointer">
+                    {% endif %}
+                </p>
+
+                <form action="{{ route('admin_benefits_cover') }}" method="post" enctype="multipart/form-data" style="display: none">
+                    <input type="hidden" name="id" value="{{ model.id }}">
+                    <input type="file" name="image" onchange="this.form.submit()">
+                </form>
+
+                <p class="help-block">Нажмите на изображение для загрузки картинки</p>
+            </div>
+
+            <form method="post" action="{{ route('admin_benefits_update') }}">
+                <input type="hidden" name="id" value="{{ model.id }}">
+
+                <div class="form-group">
+                    <label>Приоритет</label>
+                    <input type="text" name="priority" value="{{ model.priority }}" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Заголовок</label>
+                    <textarea class="form-control" rows="7" name="title" required>{{ model.title }}</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Описание</label>
+                    <textarea class="form-control" rows="7" name="description" required>{{ model.description }}</textarea>
+                </div>
+
+                <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Создать</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script>
+        $(document).ready(function(){
+            $('#upload_image').click(function(){
+                $('[type="file"]').click();
+            });
+        });
+    </script>
+{% endblock %}

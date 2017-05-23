@@ -1,0 +1,45 @@
+{% extends "admin.layout.base" %}
+
+{% block title %}Создать новое "Преимущество"{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-lg-5 col-md-7">
+            <h1>Создать новую форму</h1>
+
+            <form method="post" action="{{ route('admin_form_insert') }}">
+
+                <div class="form-group">
+                    <label>Заголовок формы</label>
+                    <input type="text" name="form_title" value="" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label>Заголовок имени</label>
+                    <input type="text" name="name_label" value="" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label>Заголовок телефона</label>
+                    <input type="text" name="phone_label" value="" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label>Пример имени</label>
+                    <input type="text" name="name_placeholder" value="" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label>Пример телефона</label>
+                    <input type="text" name="phone_placeholder" value="" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label>Надпись на кнопке</label>
+                    <input type="text" name="button_title" value="" class="form-control">
+                </div>
+
+                <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Создать</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

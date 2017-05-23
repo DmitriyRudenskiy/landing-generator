@@ -18,7 +18,11 @@ class Title extends Model
 
     const TITLE_DOWN_BUTTON = 'title_down_button';
 
+    const URL_DOWN_BUTTON = 'url_down_button';
+
     const TITLE_YANDEX_METRIKA = 'metrika';
+
+    const TITLE_FOOTER = 'title_footer';
 
     public static function getKeys()
     {
@@ -27,7 +31,9 @@ class Title extends Model
             self::TILE_PRODUCT => 2,
             self::TITLE_DOWN_BUTTON => 3,
             self::TITLE_YANDEX_METRIKA => 5,
-            self::TILE_REVIEWS => 7
+            self::TILE_REVIEWS => 7,
+            self::TITLE_FOOTER => 9,
+            self::URL_DOWN_BUTTON => 11
         ];
     }
 }

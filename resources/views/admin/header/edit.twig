@@ -2,26 +2,56 @@
 
 {% block title %}Редактировать "Шапку"{% endblock %}
 {% block content %}
+
+    <form action="{{ route('admin_header_bg') }}" method="post" enctype="multipart/form-data" style="display: none">
+        <input type="hidden" name="id" value="{{ model.id }}">
+        <input type="hidden" name="value" value="{{ model.id }}">
+        <input type="file" name="image" onchange="this.form.submit()">
+    </form>
+
     <div class="row">
         <div class="col-lg-5 col-md-7">
             <h1>Создать новую "Шапку"</h1>
 
             <div class="form-group">
-                <label>Картинка</label>
+                <label>Фон</label>
                 <p>
                     {% if model.bg is not empty %}
-                        <img id="upload_image" src="{{ model.path() }}" alt="Загрузить изображение" class="img-thumbnail" style="max-width: 350px; cursor: pointer">
+                        <img src="{{ model.path() }}" alt="Загрузить изображение" class="img-thumbnail upload_image" data-value="bg" style="max-width: 350px; cursor: pointer">
                     {% else %}
-                        <img id="upload_image" src="/img/admin/upload_image.jpg" alt="Загрузить изображение" class="img-thumbnail" style="cursor: pointer">
+                        <img src="/img/admin/upload_image.jpg" alt="Загрузить изображение" class="img-thumbnail upload_image" data-value="bg" style="cursor: pointer">
                     {% endif %}
                 </p>
 
-                <form action="{{ route('admin_header_bg') }}" method="post" enctype="multipart/form-data" style="display: none">
-                    <input type="hidden" name="id" value="{{ model.id }}">
-                    <input type="file" name="image" onchange="this.form.submit()">
-                </form>
-
                 <p class="help-block">Нажмите на изображение для загрузки картинки</p>
+            </div>
+
+
+            <div class="row well">
+                <div class="col-md-4">
+                    <h3>Картинка 1</h3>
+                    {% if model.pic_1 is not empty %}
+                        <img src="{{ model.getPic('pic_1') }}" alt="Загрузить изображение" class="img-thumbnail upload_image" data-value="pic_1" style="cursor: pointer">
+                    {% else %}
+                        <img src="/img/admin/upload_image.jpg" alt="Загрузить изображение" class="img-thumbnail upload_image" data-value="pic_1" style="cursor: pointer">
+                    {% endif %}
+                </div>
+                <div class="col-md-4">
+                    <h3>Картинка 2</h3>
+                    {% if model.pic_2 is not empty %}
+                        <img src="{{ model.getPic('pic_2') }}" alt="Загрузить изображение" class="img-thumbnail upload_image" data-value="pic_2" style="cursor: pointer">
+                    {% else %}
+                        <img src="/img/admin/upload_image.jpg" alt="Загрузить изображение" class="img-thumbnail upload_image" data-value="pic_2" style="cursor: pointer">
+                    {% endif %}
+                </div>
+                <div class="col-md-4">
+                    <h3>Картинка 3</h3>
+                    {% if model.pic_3 is not empty %}
+                        <img src="{{ model.getPic('pic_3') }}" alt="Загрузить изображение" class="img-thumbnail upload_image" data-value="pic_3" style="cursor: pointer">
+                    {% else %}
+                        <img src="/img/admin/upload_image.jpg" alt="Загрузить изображение" class="img-thumbnail upload_image" data-value="pic_3" style="cursor: pointer">
+                    {% endif %}
+                </div>
             </div>
 
             <form method="post" action="{{ route('admin_header_update') }}">
@@ -77,8 +107,14 @@
 {% block script %}
     <script>
         $(document).ready(function(){
-            $('#upload_image').click(function(){
-                $('[type="file"]').click();
+
+            $('.upload_image').click(function(){
+                var value = $(this).attr('data-value').trim();
+
+                $('[name=value]').val(value);
+                $('[type=file]').click();
+
+                console.log(value);
             });
         });
     </script>

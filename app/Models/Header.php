@@ -39,7 +39,14 @@ class Header extends Model implements PrefixInterface
 
     public function getPic($name)
     {
-        return null;
+        if (empty($this->$name)) {
+            return null;
+        }
+
+        return DIRECTORY_SEPARATOR
+            . self::PREFIX_HEADERS
+            . DIRECTORY_SEPARATOR
+            . $this->$name;
     }
 
     public function toArray()

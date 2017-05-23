@@ -81,6 +81,10 @@ class HeaderController extends Controller implements PrefixInterface
     public function bg(Request $request, Filesystem $filesystem)
     {
         $id = $request->get('id');
+        $value = $request->get('value');
+
+        // dd($value);
+
         $model = $this->repository->find($id);
 
         /* @var \Illuminate\Http\UploadedFile $file */
@@ -99,7 +103,7 @@ class HeaderController extends Controller implements PrefixInterface
         $filename = md5(microtime() . $model) . "." . $file->getClientOriginalExtension();
 
         // сохраняем путь к картинке
-        $model->bg = $filename;
+        $model->$value = $filename;
         $model->save();
 
         $directory = base_path(env('PATH_PUBLIC')) . DIRECTORY_SEPARATOR . self::PREFIX_HEADERS;

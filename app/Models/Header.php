@@ -18,7 +18,11 @@ class Header extends Model implements PrefixInterface
         'button',
         'add_1',
         'add_2',
-        'add_3'
+        'add_3',
+        'button_url',
+        'pic_1',
+        'pic_2',
+        'pic_3'
     ];
 
     public function getPath()
@@ -33,6 +37,11 @@ class Header extends Model implements PrefixInterface
             . $this->bg;
     }
 
+    public function getPic($name)
+    {
+        return null;
+    }
+
     public function toArray()
     {
         return [
@@ -43,7 +52,11 @@ class Header extends Model implements PrefixInterface
             'button' => $this->button,
             'add_1' => $this->add_1,
             'add_2'=> $this->add_2,
-            'add_3' => $this->add_3
+            'add_3' => $this->add_3,
+            'button_url' => $this->button_url,
+            'pic_1' => $this->getPic('pic_1'),
+            'pic_2' => $this->getPic('pic_2'),
+            'pic_3' => $this->getPic('pic_3')
         ];
     }
 }

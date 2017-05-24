@@ -32,7 +32,15 @@ class FrontController extends Controller
 
     public function mail(Request $request)
     {
-        $data = $request->only('name', 'phone');
+        $name = $request->get('name');
+        $phone = $request->get('phone');
+
+        $name = mb_substr($name, 0, 255);
+        $phone = preg_replace('/[^0-9]/', '', $phone);
+
+        if (strlen($phone) !== 10 && strlen($phone) !== 11) {
+            return response('Ok');
+        }
 
         $apiKey = "key-3b880a64e4179faf1e4dbab02d03deed";
         $domain = "atorgi.pro";
@@ -51,8 +59,8 @@ class FrontController extends Controller
 
         $body = sprintf(
             "Заявка на просчёт\n\tИмя: %s\n\tТелефон: %s",
-            $data['name'],
-            $data['phone']
+            $name,
+            $phone
         );
 
 

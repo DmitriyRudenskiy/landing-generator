@@ -9,7 +9,7 @@ $app->get('/delivery', 'FrontController@call');
 
 $app->post('/need/call', 'FrontController@mail');
 
-$app->group(['prefix' => 'admin', 'namespace' => 'App\Http\Controllers\Admin'], function() use ($app)
+$app->group(['prefix' => 'JBKmibp', 'namespace' => 'App\Http\Controllers\Admin'], function() use ($app)
 {
     // главная
     $app->get('/', ['as' => 'admin_dashboard', 'uses' => 'DashboardController@index']);

@@ -4,11 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model implements PrefixInterface
+class Product extends Model implements PrefixInterface, TypeParametersInterface
 {
     protected $table = 'products';
 
     protected $fillable = [
+        'type_id',
+        'is_small',
         'visible',
         'priority',
         'equipment',
@@ -17,7 +19,8 @@ class Product extends Model implements PrefixInterface
         'transmission',
         'drive_unit',
         'body_type',
-        'colour'
+        'colour',
+        'button'
     ];
 
     public function getPath()

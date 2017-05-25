@@ -1,3 +1,5 @@
+<div>{{ button.label | json_encode }}</div>
+
 {% if (list | length) > 0 %}
     <div class="row">
         <div class="col-md-12">
@@ -9,7 +11,15 @@
         <div class="row" style="border: 2px solid #445B9F; border-radius: 50px; margin: 24px 100px; padding: 25px;">
             <div class="col-md-5" >
                 <p><img src="{{ item.path }}" alt="..." width="100%"></p>
-                <p><button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#get_phone">Оформить</button></p>
+
+                {# кнока #}
+                {% if button is not empty and button.label is not empty %}
+                    {% if item[button.name] is not empty %}
+                        <p><a href="{{ item[button.name] }}" target="_blank" class="btn btn-primary btn-lg btn-block">{{ button.label }}</a></p>
+                    {% else %}
+                        <p><button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#get_phone">{{ button.label }}</button></p>
+                    {% endif %}
+                {% endif %}
             </div>
 
             <div class="col-md-7">

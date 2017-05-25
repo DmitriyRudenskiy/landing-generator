@@ -117,7 +117,8 @@ class TemplateBuilder
         $this->result->setProducts(
             $this->productRepository->getList(),
             $this->labelRepository->getList(),
-            $productTitle
+            $productTitle,
+            $this->labelRepository->getButton()
         );
 
         $reviewsTitle = 'Отзывы посетителей';

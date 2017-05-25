@@ -62,12 +62,13 @@ class TemplateData
         ];
     }
 
-    public function setProducts(array $list, array $label = [], $title = '')
+    public function setProducts(array $list, array $label = [], $title = '', $button = [])
     {
         $this->products = [
             'title' => $title,
             'label' => $label,
-            'list' => $list
+            'list' => $list,
+            'button' => $button
         ];
     }
 

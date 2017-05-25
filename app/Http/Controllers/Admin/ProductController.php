@@ -89,7 +89,8 @@ class ProductController extends Controller implements PrefixInterface
                     'transmission',
                     'drive_unit',
                     'body_type',
-                    'colour'
+                    'colour',
+                    'button'
                 ]
             )
         );
@@ -118,7 +119,8 @@ class ProductController extends Controller implements PrefixInterface
                     'transmission',
                     'drive_unit',
                     'body_type',
-                    'colour'
+                    'colour',
+                    'button'
                 ]
             )
         );

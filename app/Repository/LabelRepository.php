@@ -1,8 +1,7 @@
 <?php
 namespace App\Repository;
 
-use App\Models\Benefits;
-use App\Models\Label;
+use App\Models\Label as Model;
 use Prettus\Repository\Eloquent\BaseRepository;
 
 class LabelRepository extends BaseRepository
@@ -12,13 +11,14 @@ class LabelRepository extends BaseRepository
      */
     public function model()
     {
-        return Label::class;
+        return Model::class;
     }
 
     public function getList()
     {
-        $list = Label::select(["visible", "name", "label"])
-            ->where('visible', 1)
+        $list = Model::select(["visible", "name", "label"])
+            ->where('visible', true)
+            ->where('type_id', Model::TYPE_LIST)
             ->orderBy('priority', 'desc')
             ->get();
 
@@ -29,9 +29,17 @@ class LabelRepository extends BaseRepository
         return $list->toArray();
     }
 
+    public function getButton()
+    {
+        return  Model::where('visible', true)
+            ->where('type_id', Model::TYPE_BUTTON)
+            ->orderBy('priority', 'desc')
+            ->first();
+    }
+
     public function getAllList()
     {
-        $list = Label::select(["visible", "name", "label"])
+        $list = Model::select(["visible", "name", "label"])
             ->orderBy('visible', 'desc')
             ->orderBy('priority', 'desc')
             ->get();

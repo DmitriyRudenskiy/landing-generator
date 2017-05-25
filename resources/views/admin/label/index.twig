@@ -15,6 +15,7 @@
                     <thead>
                     <tr>
                         <th>#</th>
+                        <th>Тип</th>
                         <th>Приоритет</th>
                         <th>Параметр</th>
                         <th>Значение</th>
@@ -25,6 +26,16 @@
                     {% for item in list %}
                         <tr>
                             <td>{{ item.id }}</td>
+                            <td>
+                                {% if item.isLabel() %}
+                                <span class="label label-primary">надпись</span>
+                                {% elseif item.isButton() %}
+                                <span class="label label-success">кнопка</span>
+                                {% else %}
+                                <span class="label label-default">не известно</span>
+                                {% endif %}
+                            </td>
+
                             <td>{{ item.priority }} </td>
                             <td>{{ item.name }}</td>
                             <td>{{ item.label }}</td>

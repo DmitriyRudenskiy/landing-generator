@@ -1,41 +1,27 @@
 <style>
     .header_bg {
         width: 100%;
-        height: 608px;
+        min-height: 608px;
         margin-top: 70px;
-    }
-
-    .header_content {
-        width: 100%;
-        height: 512px;
-        position: absolute;
-        top: 70px;
-        left: 0px;
-        padding-top: 96px;
-        color: #fff;
-        text-align: center;
     }
 
     .headline {
         width: 100%;
         height: 100%;
-        background-color: #000000;
-        opacity: 0.6;
+        padding-top: 96px;
+        color: #fff;
+        text-align: center;
     }
 </style>
 
 <div class="header_bg" style="background: url('{{ bg }}') center no-repeat">
-    <div class="headline"></div>
-</div>
+    <div class="headline">
+        <div class="container">
+            <h1>{{ title | nl2br }}</h1>
+            <h2>{{ sub_title | nl2br}}</h2>
+            <hr>
 
-
-<div class="header_content text-center">
-    <div class="container">
-        <h1>{{ title | nl2br }}</h1>
-        <h2>{{ sub_title | nl2br}}</h2>
-        <hr>
-
-        <p style="font-size: 150%;">{{ description | nl2br}}</p></div>
+            <p style="font-size: 150%;">{{ description | nl2br}}</p></div>
         <p style="margin-top: 24px;">
             {% if button_url is not empty %}
                 <a href="{{ button_url }}" target="_blank" class="btn btn-primary btn-lg">{{ button }}</a>
@@ -45,18 +31,24 @@
         </p>
 
 
-    <div class="row" style="width: 80%; padding-top: 48px; padding-left: 28%">
-        <div class="col-md-4 text-left">
-            <img src="{{ pic_1 }}" alt="" style="max-width: 100px; float: left; margin-right: 12px;"> {{ add_1 | nl2br }}
-        </div>
+        <div class="row" style="padding-top: 48px; padding-bottom: 24px;">
+            <div class="col-md-4 col-xs-12">
+                <p class="text-center">
+                    <img src="{{ pic_1 }}" alt="" style="max-width: 100px;"> {{ add_1 | nl2br }}
+                </p>
+            </div>
 
-        <div class="col-md-4 text-left">
-            <img src="{{ pic_2 }}" alt="" style="max-width: 100px; float: left; margin-right: 12px;"> {{ add_2 | nl2br }}
+            <div class="col-md-4 col-xs-12">
+                <p class="text-center">
+                    <img src="{{ pic_2 }}" alt="" style="max-width: 100px;"> {{ add_2 | nl2br }}
+                </p>
+            </div>
 
-        </div>
-
-        <div class="col-md-4 text-left">
-            <img src="{{ pic_3 }}" alt="" style="max-width: 100px; float: left; margin-right: 12px;"> {{ add_3 | nl2br }}
+            <div class="col-md-4 col-xs-12">
+                <p class="text-center">
+                    <img src="{{ pic_3 }}" alt="" style="max-width: 100px;"> {{ add_3 | nl2br }}
+                </p>
+            </div>
         </div>
     </div>
 </div>

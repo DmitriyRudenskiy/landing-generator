@@ -1,0 +1,28 @@
+<div class="modal fade" tabindex="-1" role="dialog" id="get_phone">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <p class="text-right"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></p>
+
+                <div>
+                    <h3>{{ modal.form_title }}</h3>
+                    <p>{{ modal.form_description }}</p>
+
+                    <form>
+                        <div class="form-group text-left">
+                            <label>{{ modal.name_label }}</label>
+                            <input type="text" name="name" class="form-control" placeholder="{{ modal.name_placeholder }}" required>
+                        </div>
+                        <div class="form-group text-left">
+                            <label class="text-left">{{ modal.phone_label }}</label>
+                            <input type="text" name="phone" class="form-control" placeholder="{{ modal.phone_placeholder }}" required>
+                        </div>
+                        <button type="submit" class="btn btn-warning">{{ modal.button_title }}</button>
+                    </form>
+
+                    <p style="padding-top: 24px; font-size: 80%">Ваши контактные данные в безопасности<br>и не будут переданы третьим лицам</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

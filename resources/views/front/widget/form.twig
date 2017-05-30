@@ -1,27 +1,31 @@
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
 
-        {% if form_title is not empty %}
-        <h2 class="text-center" style="color: #445B9F;">{{ form_title }}</h2>
+        {% if  widget.form_title is not empty %}
+        <h2 class="text-center" style="color: #445B9F;">{{ widget.form_title }}</h2>
+        {% endif %}
+
+        {% if  widget.form_title is not empty %}
+            <p>{{ widget.form_description | nl2br }}</p>
         {% endif %}
 
         <div class="row" style="padding-bottom: 0">
             <form>
                 <div class="col-md-5">
                     <div class="form-group">
-                        <label>{{ name_label }}</label>
-                        <input type="text" name="name" value="" class="form-control" placeholder="{{ name_placeholder }}">
+                        <label>{{ widget.name_label }}</label>
+                        <input type="text" name="name" value="" class="form-control" placeholder="{{ widget.name_placeholder }}">
                     </div>
                 </div>
                 <div class="col-md-5">
                     <div class="form-group">
-                        <label>{{ phone_label }}</label>
-                        <input type="text" name="phone" value="" class="form-control" placeholder="{{ phone_placeholder }}">
+                        <label>{{ widget.phone_label }}</label>
+                        <input type="text" name="phone" value="" class="form-control" placeholder="{{ widget.phone_placeholder }}">
                     </div>
                 </div>
                 <div class="col-md-2" style="padding: 20px">
-                    {% if button_title is not empty %}
-                    <button type="submit" class="btn btn-default">{{ button_title }}</button>
+                    {% if  widget.button_title is not empty %}
+                    <button type="submit" class="btn btn-default">{{  widget.button_title }}</button>
                     {% else %}
                     <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></button>
                     {% endif %}

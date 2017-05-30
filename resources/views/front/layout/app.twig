@@ -37,34 +37,10 @@
     </div>
 </footer>
 
-<div class="modal fade" tabindex="-1" role="dialog" id="get_phone">
-    <div class="modal-dialog modal-sm" role="document">
-        <div class="modal-content">
-            <div class="modal-body text-center">
-                <p class="text-right"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></p>
+{% if data.form.modal is not empty %}
+    {% include 'front/widget/modal.twig' with data.form only %}
+{% endif %}
 
-                <div>
-                    <h3>Быстрая помощь<br>дилера</h3>
-                    <p>Специалист быстро рассчитает несколько вариантов лизинга, предложит варианты снижения цены, подберёт комплектацию, проконсультирует по условиям доставки по всей стране</p>
-
-                    <form>
-                        <div class="form-group text-left">
-                            <label>Ваше имя:</label>
-                            <input type="text" name="name" class="form-control" placeholder="Иван" required>
-                        </div>
-                        <div class="form-group text-left">
-                            <label class="text-left">Телефон:</label>
-                            <input type="text" name="phone" class="form-control" placeholder="+7 (000) 000-0000" required>
-                        </div>
-                        <button type="submit" class="btn btn-warning">Позвонить мне быстро</button>
-                    </form>
-
-                    <p style="padding-top: 24px; font-size: 80%">Ваши контактные данные в безопасности<br>и не будут переданы третьим лицам</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 <script src="/js/jquery.js"></script>
 <script src="/js/bootstrap.min.js"></script>

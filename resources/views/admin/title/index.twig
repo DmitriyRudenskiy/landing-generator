@@ -23,15 +23,23 @@
                     <input type="text" name="title_product" value="{{ list.title_product }}" class="form-control" required>
                 </div>
 
+                <h3>Нижняя кнопка</h3>
+
+                <div class="form-group">
+                    <label>Текст перед кнопкой</label>
+                    <textarea class="form-control" rows="7" name="header_down_button">{{ list.header_down_button | raw }}</textarea>
+                </div>
+
                 <div class="form-group">
                     <label>Надпись на нижней кнопке</label>
                     <input type="text" name="title_down_button" value="{{ list.title_down_button }}" class="form-control" required>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group" style="border-bottom: 1px solid #ccc; padding-bottom: 12px">
                     <label>Адрес для нижней кнопки</label>
                     <input type="text" name="url_down_button" value="{{ list.url_down_button }}" class="form-control">
                 </div>
+
 
                 <div class="form-group">
                     <label>Яндекс Метрика</label>

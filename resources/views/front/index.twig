@@ -28,13 +28,17 @@
         {% include 'front/widget/form.twig' with data.reviews only %}
         -->
 
-        <p class="text-center" style="margin-top: 24px; margin-bottom: 48px">
-            {% if data.title.url_down_button is not empty %}
-                <a href="{{ data.title.url_down_button }}" target="_blank" class="btn btn-primary btn-lg">{{ data.title.title_down_button }}</a>
-            {% else %}
-                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#get_phone">{{ data.title.title_down_button }}</button>
+        <div class="text-center" style="margin-top: 24px; margin-bottom: 48px">
+            {% if data.title.header_down_button is not empty %}
+                <h3>{{ data.title.header_down_button | nl2br }}</h3>
             {% endif %}
-        </p>
+
+        {% if data.title.url_down_button is not empty %}
+            <a href="{{ data.title.url_down_button }}" target="_blank" class="btn btn-primary btn-lg">{{ data.title.title_down_button }}</a>
+        {% else %}
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#get_phone">{{ data.title.title_down_button }}</button>
+        {% endif %}
+        </div>
 
         {# новый блок #}
 

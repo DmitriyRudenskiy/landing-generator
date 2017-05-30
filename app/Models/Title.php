@@ -16,6 +16,8 @@ class Title extends Model
 
     const TILE_PRODUCT = 'title_product';
 
+    const HEADER_DOWN_BUTTON = 'header_down_button';
+
     const TITLE_DOWN_BUTTON = 'title_down_button';
 
     const URL_DOWN_BUTTON = 'url_down_button';
@@ -33,7 +35,8 @@ class Title extends Model
             self::TITLE_YANDEX_METRIKA => 5,
             self::TILE_REVIEWS => 7,
             self::TITLE_FOOTER => 9,
-            self::URL_DOWN_BUTTON => 11
+            self::URL_DOWN_BUTTON => 11,
+            self::HEADER_DOWN_BUTTON => 15
         ];
     }
 }

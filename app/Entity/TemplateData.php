@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use App\Models\Form;
+
 class TemplateData
 {
     /**
@@ -35,6 +37,11 @@ class TemplateData
      */
     private $title;
 
+    /**
+     * @var Form[]
+     */
+    private $form = [];
+
     public function __construct()
     {
         $this->benefits = ['list' => []];
@@ -44,6 +51,11 @@ class TemplateData
             'logo' => [],
             'phone' => [],
             'list'=> []
+        ];
+
+        $this->form = [
+            'modal' => [],
+            'widget' => []
         ];
 
         $this->title = [];
@@ -146,5 +158,25 @@ class TemplateData
     public function setTitle($title)
     {
         $this->title = $title;
+    }
+
+    /**
+     * @return \App\Models\Form[]
+     */
+    public function getForm()
+    {
+        return $this->form;
+    }
+
+    /**
+     * @param Form|null $modal
+     * @param Form|null $widget
+     */
+    public function setForm($modal, $widget)
+    {
+        $this->form = [
+            'modal' => $modal,
+            'widget' => $widget
+        ];
     }
 }

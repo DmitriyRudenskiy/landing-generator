@@ -79,8 +79,13 @@ $app->group(['prefix' => 'JBKmibp', 'namespace' => 'App\Http\Controllers\Admin']
     // формы
     $app->get('/form', ['as' => 'admin_form_index', 'uses' => 'FormController@index']);
     $app->get('/form/add', ['as' => 'admin_form_add', 'uses' => 'FormController@add']);
-
+    $app->get('/form/edit/{id}', ['as' => 'admin_form_edit', 'uses' => 'FormController@edit']);
     $app->post('/form/insert', ['as' => 'admin_form_insert', 'uses' => 'FormController@insert']);
+    $app->post('/form/update', ['as' => 'admin_form_update', 'uses' => 'FormController@update']);
+    $app->get('/form/hide/{id}', ['as' => 'admin_form_hide', 'uses' => 'FormController@hide']);
+    $app->get('/form/show/{id}', ['as' => 'admin_form_show', 'uses' => 'FormController@show']);
+
+
 
     // проекты
     $app->get('/projects', ['as' => 'admin_projects_index', 'uses' => 'ProjectController@index']);

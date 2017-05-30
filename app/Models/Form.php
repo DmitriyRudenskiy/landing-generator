@@ -15,6 +15,9 @@ class Form extends Model
         'phone_label',
         'name_placeholder',
         'phone_placeholder',
-        'button_title'
+        'button_title',
+        'project_id',
+        'form_description',
+        'in_modal'
     ];
 }

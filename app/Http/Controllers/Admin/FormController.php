@@ -21,14 +21,19 @@ class FormController extends Controller
     {
         $list = $this->repository->getAllList();
 
-        // dd($list);
-
         return view('admin.form.index', ['list'=> $list]);
     }
 
     public function add()
     {
         return view('admin.form.add');
+    }
+
+    public function edit($id)
+    {
+        $model = $this->repository->find($id);
+
+        return view('admin.form.edit', ['model' => $model]);
     }
 
     public function insert(Request $request)
@@ -42,7 +47,9 @@ class FormController extends Controller
                     'phone_label',
                     'name_placeholder',
                     'phone_placeholder',
-                    'button_title'
+                    'button_title',
+                    'form_description',
+                    'in_modal'
                 ]
             )
         );
@@ -56,4 +63,46 @@ class FormController extends Controller
         throw new \RuntimeException();
     }
 
+    public function update(Request $request)
+    {
+        $id = $request->get('id');
+
+        $data = array_map(
+            'trim',
+            $request->only(
+                [
+                    'form_title',
+                    'name_label',
+                    'phone_label',
+                    'name_placeholder',
+                    'phone_placeholder',
+                    'button_title',
+                    'form_description',
+                    'in_modal'
+                ]
+            )
+        );
+
+        $this->repository->update($data, $id);
+
+        return redirect()->route('admin_form_index');
+    }
+
+    public function hide($id)
+    {
+        $model = $this->repository->find($id);
+        $model->visible = 0;
+        $model->save();
+
+        return redirect()->route('admin_form_index');
+    }
+
+    public function show($id)
+    {
+        $model = $this->repository->find($id);
+        $model->visible = 1;
+        $model->save();
+
+        return redirect()->route('admin_form_index');
+    }
 }

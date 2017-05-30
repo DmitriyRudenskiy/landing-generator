@@ -9,8 +9,22 @@
             <form method="post" action="{{ route('admin_form_insert') }}">
 
                 <div class="form-group">
+                    <label>Отображение</label>
+
+                    <select name="in_modal" class="form-control">
+                        <option value="0">Виджет</option>
+                        <option value="1">Окно</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
                     <label>Заголовок формы</label>
                     <input type="text" name="form_title" value="" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label>Описание формы</label>
+                    <textarea class="form-control" rows="7" name="form_description"></textarea>
                 </div>
 
                 <div class="form-group">

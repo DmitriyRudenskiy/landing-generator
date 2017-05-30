@@ -13,6 +13,8 @@ class FrontController extends Controller
     {
         $data = $builder->init()->get();
 
+        dd($data->getForm());
+
         return view('front.index', ['data' => $data]);
     }
 

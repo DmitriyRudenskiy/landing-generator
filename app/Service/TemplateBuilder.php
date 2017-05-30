@@ -5,6 +5,7 @@ namespace App\Service;
 use App\Entity\TemplateData;
 use App\Models\Menu;
 use App\Repository\BenefitsRepository;
+use App\Repository\FormRepository;
 use App\Repository\HeaderRepository;
 use App\Repository\LabelRepository;
 use App\Repository\ProductRepository;
@@ -49,6 +50,11 @@ class TemplateBuilder
     private $titleRepository;
 
     /**
+     * @var FormRepository
+     */
+    private $formRepository;
+
+    /**
      * @var TemplateData
      */
     private $result;
@@ -69,7 +75,8 @@ class TemplateBuilder
                                 LabelRepository $labelRepository,
                                 Menu $menuRepository,
                                 TitleRepository $titleRepository,
-                                ReviewsRepository $reviewsRepository
+                                ReviewsRepository $reviewsRepository,
+                                FormRepository $formRepository
 )
     {
         $this->benefitsRepository = $benefitsRepository;
@@ -79,6 +86,8 @@ class TemplateBuilder
         $this->menuRepository = $menuRepository;
         $this->titleRepository = $titleRepository;
         $this->reviewsRepository = $reviewsRepository;
+        $this->formRepository = $formRepository;
+
         $this->result = new TemplateData();
     }
 
@@ -138,6 +147,12 @@ class TemplateBuilder
             $this->menuRepository->getLogo(),
             $this->menuRepository->getItems(),
             $this->menuRepository->getPhone()
+        );
+
+        // Устанавливаем форму
+        $this->result->setForm(
+            $this->formRepository->getModalForm(),
+            $this->formRepository->getForm()
         );
 
         return $this;

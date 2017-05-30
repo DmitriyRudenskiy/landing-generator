@@ -49,4 +49,20 @@ class FormRepository extends BaseRepository
     {
         return $this->update($data, $id);
     }
+
+    public function getForm()
+    {
+        return Model::where('in_modal', false)
+            ->where('visible', true)
+            ->orderBy('id', 'desc')
+            ->first();
+    }
+
+    public function getModalForm()
+    {
+        return Model::where('in_modal', true)
+            ->where('visible', true)
+            ->orderBy('id', 'desc')
+            ->first();
+    }
 }

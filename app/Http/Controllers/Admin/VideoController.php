@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Imagine\Gd\Imagine;
 use Laravel\Lumen\Routing\Controller;
 
-class ImageController extends Controller
+class VideoController extends Controller
 {
     /**
      * @var Menu

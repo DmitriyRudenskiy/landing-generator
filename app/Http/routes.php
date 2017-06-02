@@ -85,7 +85,14 @@ $app->group(['prefix' => 'JBKmibp', 'namespace' => 'App\Http\Controllers\Admin']
     $app->get('/form/hide/{id}', ['as' => 'admin_form_hide', 'uses' => 'FormController@hide']);
     $app->get('/form/show/{id}', ['as' => 'admin_form_show', 'uses' => 'FormController@show']);
 
-
+    // видео
+    $app->get('/video', ['as' => 'admin_video_index', 'uses' => 'VideoController@index']);
+    $app->get('/video/add', ['as' => 'admin_video_add', 'uses' => 'VideoController@add']);
+    $app->get('/video/edit/{id}', ['as' => 'admin_video_edit', 'uses' => 'VideoController@edit']);
+    $app->post('/video/insert', ['as' => 'admin_video_insert', 'uses' => 'VideoController@insert']);
+    $app->post('/video/update', ['as' => 'admin_video_update', 'uses' => 'VideoController@update']);
+    $app->get('/video/hide/{id}', ['as' => 'admin_video_hide', 'uses' => 'VideoController@hide']);
+    $app->get('/video/show/{id}', ['as' => 'admin_video_show', 'uses' => 'VideoController@show']);
 
     // проекты
     $app->get('/projects', ['as' => 'admin_projects_index', 'uses' => 'ProjectController@index']);

@@ -10,6 +10,73 @@ php -S 0.0.0.0:8095 -t /php/tbm.su/public_html/ > /dev/null 2>&1 &
 php -S 0.0.0.0:8097 -t /php/baa.tbm.su/public_html/ > /dev/null 2>&1 &
 php -S 0.0.0.0:8099 -t /php/kar.tbm.su/public_html/ > /dev/null 2>&1 &
 
+php -S 0.0.0.0:10026 -t /php/cuba-club.ru/root/public_html/ > /dev/null 2>&1 &
+php -S 0.0.0.0:10096 -t /php/cuba-club.ru/a.cuba-club.ru/public_html/ > /dev/null 2>&1 &
+php -S 0.0.0.0:10097 -t /php/cuba-club.ru/b.cuba-club.ru/public_html/ > /dev/null 2>&1 &
+php -S 0.0.0.0:10037 -t /php/cuba-club.ru/c.cuba-club.ru/public_html/ > /dev/null 2>&1 &
+php -S 0.0.0.0:10012 -t /php/cuba-club.ru/d.cuba-club.ru/public_html/ > /dev/null 2>&1 &
+php -S 0.0.0.0:10042 -t /php/cuba-club.ru/e.cuba-club.ru/public_html/ > /dev/null 2>&1 &
+php -S 0.0.0.0:10058 -t /php/cuba-club.ru/f.cuba-club.ru/public_html/ > /dev/null 2>&1 &
+php -S 0.0.0.0:10040 -t /php/cuba-club.ru/g.cuba-club.ru/public_html/ > /dev/null 2>&1 &
+php -S 0.0.0.0:10088 -t /php/cuba-club.ru/h.cuba-club.ru/public_html/ > /dev/null 2>&1 &
+php -S 0.0.0.0:10092 -t /php/cuba-club.ru/i.cuba-club.ru/public_html/ > /dev/null 2>&1 &
+php -S 0.0.0.0:10045 -t /php/cuba-club.ru/j.cuba-club.ru/public_html/ > /dev/null 2>&1 &
+php -S 0.0.0.0:10088 -t /php/cuba-club.ru/k.cuba-club.ru/public_html/ > /dev/null 2>&1 &
+php -S 0.0.0.0:10079 -t /php/cuba-club.ru/l.cuba-club.ru/public_html/ > /dev/null 2>&1 &
+php -S 0.0.0.0:10030 -t /php/cuba-club.ru/m.cuba-club.ru/public_html/ > /dev/null 2>&1 &
+php -S 0.0.0.0:10042 -t /php/cuba-club.ru/n.cuba-club.ru/public_html/ > /dev/null 2>&1 &
+php -S 0.0.0.0:10024 -t /php/cuba-club.ru/o.cuba-club.ru/public_html/ > /dev/null 2>&1 &
+
+
+    backend cubaclubru_backend
+        server node1 127.0.0.1:10026
+
+    backend acubaclubru_backend
+        server node1 127.0.0.1:10096
+
+    backend bcubaclubru_backend
+        server node1 127.0.0.1:10097
+
+    backend ccubaclubru_backend
+        server node1 127.0.0.1:10037
+
+    backend dcubaclubru_backend
+        server node1 127.0.0.1:10012
+
+    backend ecubaclubru_backend
+        server node1 127.0.0.1:10042
+
+    backend fcubaclubru_backend
+        server node1 127.0.0.1:10058
+
+    backend gcubaclubru_backend
+        server node1 127.0.0.1:10040
+
+    backend hcubaclubru_backend
+        server node1 127.0.0.1:10088
+
+    backend icubaclubru_backend
+        server node1 127.0.0.1:10092
+
+    backend jcubaclubru_backend
+        server node1 127.0.0.1:10045
+
+    backend kcubaclubru_backend
+        server node1 127.0.0.1:10088
+
+    backend lcubaclubru_backend
+        server node1 127.0.0.1:10079
+
+    backend mcubaclubru_backend
+        server node1 127.0.0.1:10030
+
+    backend ncubaclubru_backend
+        server node1 127.0.0.1:10042
+
+    backend ocubaclubru_backend
+        server node1 127.0.0.1:10024
+
+
 http://fuso-canter.ru:8083
 http://hyundai-d78.ru:8085
 http://hino-300.ru:8087
@@ -18,15 +85,3 @@ http://isuzu-elf.ru:8091
 
 # Запуск тестов
 php vendor/bin/phpunit --bootstrap vendor/autoload.php
-
-echo 'Start: baa.tbm.su'
-cd /php/baa.tbm.su
-git pull
-composer install
-php artisan migrate
-
-echo 'Start: kar.tbm.su'
-cd /php/kar.tbm.su
-git pull
-composer install
-php artisan migrate

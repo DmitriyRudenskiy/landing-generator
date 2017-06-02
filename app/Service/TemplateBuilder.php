@@ -11,6 +11,7 @@ use App\Repository\LabelRepository;
 use App\Repository\ProductRepository;
 use App\Repository\ReviewsRepository;
 use App\Repository\TitleRepository;
+use App\Repository\VideoRepository;
 
 class TemplateBuilder
 {
@@ -55,12 +56,18 @@ class TemplateBuilder
     private $formRepository;
 
     /**
+     * @var VideoRepository
+     */
+    private $videoRepository;
+
+    /**
      * @var TemplateData
      */
     private $result;
 
     /**
      * TemplateBuilder constructor.
+     *
      * @param BenefitsRepository $benefitsRepository
      * @param HeaderRepository $headerRepository
      * @param ProductRepository $productRepository
@@ -68,6 +75,8 @@ class TemplateBuilder
      * @param Menu $menuRepository
      * @param TitleRepository $titleRepository
      * @param ReviewsRepository $reviewsRepository
+     * @param FormRepository $formRepository
+     * @param VideoRepository $videoRepository
      */
     public function __construct(BenefitsRepository $benefitsRepository,
                                 HeaderRepository $headerRepository,
@@ -76,8 +85,8 @@ class TemplateBuilder
                                 Menu $menuRepository,
                                 TitleRepository $titleRepository,
                                 ReviewsRepository $reviewsRepository,
-                                FormRepository $formRepository
-)
+                                FormRepository $formRepository,
+                                VideoRepository $videoRepository)
     {
         $this->benefitsRepository = $benefitsRepository;
         $this->headerRepository = $headerRepository;
@@ -87,6 +96,7 @@ class TemplateBuilder
         $this->titleRepository = $titleRepository;
         $this->reviewsRepository = $reviewsRepository;
         $this->formRepository = $formRepository;
+        $this->videoRepository = $videoRepository;
 
         $this->result = new TemplateData();
     }
@@ -154,6 +164,9 @@ class TemplateBuilder
             $this->formRepository->getModalForm(),
             $this->formRepository->getForm()
         );
+
+        // Устанавливаем видео
+        $this->result->setVideo($this->videoRepository->get());
 
         return $this;
     }

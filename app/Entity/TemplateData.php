@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Models\Form;
+use App\Models\Video;
 
 class TemplateData
 {
@@ -42,6 +43,16 @@ class TemplateData
      */
     private $form = [];
 
+    /**
+     * @var Video
+     */
+    private $video;
+
+    /**
+     * @var
+     */
+    private $image;
+
     public function __construct()
     {
         $this->benefits = ['list' => []];
@@ -59,6 +70,8 @@ class TemplateData
         ];
 
         $this->title = [];
+        $this->video = [];
+        $this->image = [];
     }
 
     public function setHeader($header)
@@ -178,5 +191,37 @@ class TemplateData
             'modal' => $modal,
             'widget' => $widget
         ];
+    }
+
+    /**
+     * @return Video
+     */
+    public function getVideo()
+    {
+        return $this->video;
+    }
+
+    /**
+     * @param Video $video
+     */
+    public function setVideo($video)
+    {
+        $this->video = $video;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param mixed $image
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
     }
 }

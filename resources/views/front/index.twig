@@ -41,5 +41,13 @@
         {% endif %}
         </div>
     </div>
+        {# картинка #}
+
+        {# видео #}
+        {% if data.video is not empty %}
+            {% include 'front/widget/video.twig' with data.video only %}
+        {% endif %}
+
+
 
 {% endblock %}

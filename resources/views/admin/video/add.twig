@@ -1,0 +1,30 @@
+{% extends "admin.layout.base" %}
+
+{% block title %}Добавить новое видео{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-lg-5 col-md-7">
+            <h1>Добавить новое видео</h1>
+
+            <form method="post" action="{{ route('admin_video_insert') }}">
+                <div class="form-group">
+                    <label>Адрес (url)</label>
+                    <input type="text" name="url" value="" class="form-control" required>
+                    <p class="help-block">Пример: https://www.youtube.com/<strong>embed</strong>/Q_trb5A9PC0</p>
+                </div>
+
+                <div class="form-group">
+                    <label>Заголовок</label>
+                    <textarea class="form-control" rows="7" name="title"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Описание</label>
+                    <textarea class="form-control" rows="7" name="description"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Создать</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

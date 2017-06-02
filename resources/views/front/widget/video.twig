@@ -1,0 +1,13 @@
+<div class="container">
+    {% if title is not empty %}
+    <h3 class="text-center">{{ title | nl2br }}</h3>
+    {% endif %}
+
+    {% if description is not empty %}
+        <p class="text-center">{{ description | nl2br }}</p>
+    {% endif %}
+
+    <div class="embed-responsive embed-responsive-16by9" style="margin-bottom: 48px;">
+        <iframe class="embed-responsive-item" src="{{ url }}"></iframe>
+    </div>
+</div>

@@ -47,17 +47,19 @@ class FrontController extends Controller
         $apiKey = "key-3b880a64e4179faf1e4dbab02d03deed";
         $domain = "atorgi.pro";
 
-        /*
+
         $mailList = [
+            'klub15@inbox.ru',
             'ms@autodeviz.info',
             'partner@atorgi.ru',
             'dmitriy.rudenskiy@gmail.com'
         ];
-        */
 
+        /*
         $mailList = [
             'atorgitender1@atorgi.ru'
         ];
+        */
 
         $body = sprintf(
             "Заявка на просчёт\n\tИмя: %s\n\tТелефон: %s",

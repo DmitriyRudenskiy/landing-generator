@@ -13,8 +13,6 @@ class FrontController extends Controller
     {
         $data = $builder->init()->get();
 
-        // dd($data->getForm()['modal']);
-
         return view('front.index', ['data' => $data]);
     }
 
@@ -34,6 +32,10 @@ class FrontController extends Controller
 
     public function mail(Request $request)
     {
+        if (empty(env('MAILGUN_API_KEY')) || empty(env('MAILGUN_DOMAIN'))) {
+            throw new \RuntimeException();
+        }
+
         $name = $request->get('name');
         $phone = $request->get('phone');
 
@@ -44,9 +46,8 @@ class FrontController extends Controller
             return response('Ok');
         }
 
-        $apiKey = "key-3b880a64e4179faf1e4dbab02d03deed";
-        $domain = "atorgi.pro";
-
+        $apiKey = env('MAILGUN_API_KEY');
+        $domain = env('MAILGUN_DOMAIN');
 
         $mailList = [
             'klub15@inbox.ru',
@@ -54,12 +55,6 @@ class FrontController extends Controller
             'partner@atorgi.ru',
             'dmitriy.rudenskiy@gmail.com'
         ];
-
-        /*
-        $mailList = [
-            'atorgitender1@atorgi.ru'
-        ];
-        */
 
         $body = sprintf(
             "Заявка на просчёт\n\tИмя: %s\n\tТелефон: %s",

@@ -26,6 +26,8 @@ class Title extends Model
 
     const TITLE_FOOTER = 'title_footer';
 
+    const LOGO_URL = 'logo_url';
+
     public static function getKeys()
     {
         return [
@@ -36,7 +38,8 @@ class Title extends Model
             self::TILE_REVIEWS => 7,
             self::TITLE_FOOTER => 9,
             self::URL_DOWN_BUTTON => 11,
-            self::HEADER_DOWN_BUTTON => 15
+            self::HEADER_DOWN_BUTTON => 15,
+            self::LOGO_URL => 17
         ];
     }
 }

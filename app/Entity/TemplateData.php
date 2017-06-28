@@ -146,14 +146,18 @@ class TemplateData
     }
 
     /**
-     * @param array $menu
+     * @param $logo
+     * @param $items
+     * @param $phone
+     * @param string $logoUrl
      */
-    public function setMenu($logo, $items, $phone)
+    public function setMenu($logo, $items, $phone,  $logoUrl)
     {
         $this->menu = [
             'logo' => $logo,
             'phone' => $phone,
-            'list'=> $items
+            'list'=> $items,
+            'logo_url' =>  $logoUrl
         ];
     }
 

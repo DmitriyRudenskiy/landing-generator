@@ -49,19 +49,13 @@ class FrontController extends Controller
         $apiKey = env('MAILGUN_API_KEY');
         $domain = env('MAILGUN_DOMAIN');
 
-        $mailList = [
-            'klub15@inbox.ru',
-            'ms@autodeviz.info',
-            'partner@atorgi.ru',
-            'dmitriy.rudenskiy@gmail.com'
-        ];
+        $mailList = explode(',', env('MAILGUN_LIST'));
 
         $body = sprintf(
             "Заявка на просчёт\n\tИмя: %s\n\tТелефон: %s",
             $name,
             $phone
         );
-
 
         $mgClient = new Mailgun($apiKey);
 

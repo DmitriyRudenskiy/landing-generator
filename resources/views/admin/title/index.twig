@@ -14,13 +14,20 @@
 
             <form method="post" action="{{ route('admin_title_update') }}">
                 <div class="form-group">
+                    <label>Адрес для логотипа</label>
+                    <input type="text" name="logo_url" value="{{ list.logo_url }}" class="form-control">
+                </div>
+
+
+
+                <div class="form-group">
                     <label>Meta title</label>
                     <input type="text" name="title_mime" value="{{ list.title_mime }}" class="form-control" required>
                 </div>
 
                 <div class="form-group">
                     <label>Заголовок списка товаров (каталога)</label>
-                    <input type="text" name="title_product" value="{{ list.title_product }}" class="form-control" required>
+                    <input type="text" name="title_product" value="{{ list.title_product }}" class="form-control">
                 </div>
 
                 <h3>Нижняя кнопка</h3>

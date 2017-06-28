@@ -152,11 +152,19 @@ class TemplateBuilder
             $reviewsTitle
         );
 
+        $logoUrl = '/';
+
+        // адрес для логотипа в меню
+        if (!empty($titleList['logo_url'])) {
+            $logoUrl = $titleList['logo_url'];
+        }
+
         // Устанавливаем меню
         $this->result->setMenu(
             $this->menuRepository->getLogo(),
             $this->menuRepository->getItems(),
-            $this->menuRepository->getPhone()
+            $this->menuRepository->getPhone(),
+            $logoUrl
         );
 
         // Устанавливаем форму

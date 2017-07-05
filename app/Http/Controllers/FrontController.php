@@ -32,7 +32,7 @@ class FrontController extends Controller
 
     public function mail(Request $request)
     {
-        if (empty(env('MAILGUN_API_KEY')) || empty(env('MAILGUN_DOMAIN'))) {
+        if (empty(env('MAILGUN_SECRET')) || empty(env('MAILGUN_DOMAIN'))) {
             throw new \RuntimeException();
         }
 
@@ -46,27 +46,20 @@ class FrontController extends Controller
             return response('Ok');
         }
 
-        $apiKey = env('MAILGUN_API_KEY');
-        $domain = env('MAILGUN_DOMAIN');
-
-        $mailList = explode(',', env('MAILGUN_LIST'));
-
         $body = sprintf(
             "Заявка на просчёт\n\tИмя: %s\n\tТелефон: %s",
             $name,
             $phone
         );
 
-        $mgClient = new Mailgun($apiKey);
+        $mgClient = new Mailgun(env('MAILGUN_SECRET'));
 
-        foreach ($mailList as $value) {
-            $mgClient->sendMessage($domain, array(
-                'from'    => 'Почтовый агент <mailgun@atorgi.pro>',
-                'to'      => $value,
-                'subject' => '[' . $request->getHost() . '] Заявка с сайта',
-                'text'    => $body
-            ));
-        }
+        $mgClient->sendMessage(env('MAILGUN_DOMAIN'), array(
+            'from'    => sprintf("'%s <%s>'", env('MAIL_FROM_NAME'), env('MAIL_TO')),
+            'to'      => env('MAIL_FROM_ADDRESS'),
+            'subject' => '[' . $request->getHost() . '] Заявка с сайта',
+            'text'    => $body
+        ));
 
         return response('Ok');
     }

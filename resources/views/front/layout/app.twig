@@ -51,7 +51,7 @@
 
 <script>
     $(document).ready(function(){
-        $('#get_phone form').submit(function() {
+        $('form.send_data').submit(function() {
 
             $('<div>').addClass('text-success').html('<h2><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Спасибо за Ваше сообщение!</h2>').insertAfter($(this).parent());
             $(this).parent().hide();

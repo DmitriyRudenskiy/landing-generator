@@ -54,8 +54,12 @@ class FrontController extends Controller
 
         $mgClient = new Mailgun(env('MAILGUN_SECRET'));
 
+        $from = sprintf("'%s <%s>'", env('MAIL_FROM_NAME'), env('MAIL_TO'));
+
+        dd($from);
+
         $mgClient->sendMessage(env('MAILGUN_DOMAIN'), array(
-            'from'    => sprintf("'%s <%s>'", env('MAIL_FROM_NAME'), env('MAIL_TO')),
+            'from'    => $from,
             'to'      => env('MAIL_FROM_ADDRESS'),
             'subject' => '[' . $request->getHost() . '] Заявка с сайта',
             'text'    => $body

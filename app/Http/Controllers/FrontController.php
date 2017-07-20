@@ -36,6 +36,8 @@ class FrontController extends Controller
             throw new \RuntimeException();
         }
 
+        @date_default_timezone_set('Asia/Novosibirsk');
+
         $name = $request->get('name');
         $phone = $request->get('phone');
 

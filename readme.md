@@ -35,6 +35,10 @@ php -S 0.0.0.0:20003 -t /php/atorgi.ru/parts/public_html/ > /dev/null 2>&1 &
 php -S 0.0.0.0:20005 -t /php/atorgi.ru/service/public_html/ > /dev/null 2>&1 &
 php -S 0.0.0.0:20007 -t /php/atorgi.ru/tires/public_html/ > /dev/null 2>&1 &
 
+php -S 0.0.0.0:30001 -t /php/newcuba.ru/public/ > /dev/null 2>&1 &
+
+
+
 
     backend cubaclubru_backend
         server node1 127.0.0.1:10026
@@ -83,6 +87,10 @@ php -S 0.0.0.0:20007 -t /php/atorgi.ru/tires/public_html/ > /dev/null 2>&1 &
 
     backend ocubaclubru_backend
         server node1 127.0.0.1:10024
+
+    backend newcubaru_backend
+        server node1 127.0.0.1:30001
+
 
 
 http://fuso-canter.ru:8083

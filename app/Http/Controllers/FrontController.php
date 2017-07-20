@@ -52,6 +52,13 @@ class FrontController extends Controller
             $phone
         );
 
+        // логируем в файл
+        @file_put_contents(
+            '/tmp/phone_log.txt',
+            implode("\t", [date("Y-m-d H:i:s"), $request->getHost(), $name, $phone]) . "\n",
+            FILE_APPEND
+        );
+
         $mgClient = new Mailgun(env('MAILGUN_SECRET'));
 
         $mgClient->sendMessage(env('MAILGUN_DOMAIN'), array(

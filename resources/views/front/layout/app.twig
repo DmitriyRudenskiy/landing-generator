@@ -77,6 +77,8 @@
         url: 'http://lsuzu.ru:2001/',
         dataType: "json",
         success: function(obj){
+            console.log(obj);
+
             if (typeof(obj.name) === "string") {
                 $('body').children().each(function() {
                     if ($(this).context.localName !== "script") {

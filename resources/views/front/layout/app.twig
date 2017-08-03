@@ -74,13 +74,13 @@
 
 <script type="text/javascript">
     $.ajax({
-        url: 'https://geoip-js.maxmind.com/geoip/v2.1/city/me?referrer=file%3A%2F%2F',
+        url: 'http://lsuzu.ru:2001/',
         dataType: "json",
         success: function(obj){
-            if (typeof(obj.city.names.ru) === "string") {
+            if (typeof(obj.name) === "string") {
                 $('body').children().each(function() {
                     if ($(this).context.localName !== "script") {
-                        $(this).html($(this).html().replace(/city_name/g, 'в ' + obj.city.names.ru + 'е'));
+                        $(this).html($(this).html().replace(/city_name/g, 'в ' + obj.name + 'е'));
                     }
                 });
             }

@@ -73,18 +73,38 @@
 {{ data.title.metrika | raw }}
 
 <script type="text/javascript">
+    function getName(name) {
+        if (name.length < 1) {
+            return '';
+        }
+
+        var last = name[name.length-1];
+
+        if (last === "а" || last === "й") {
+            return name.substr(0, name.length - 1) + 'е';
+        } else if (last === "ь") {
+            return name.substr(0, name.length - 1) + 'и';
+        } else if (last === "о") {
+            return name;
+        } else if (last === "у" || last === "и") {
+            return name;
+        }
+
+        return name + 'e';
+    }
+
     $.ajax({
         url: 'http://lsuzu.ru:2001/',
         dataType: "json",
         success: function(obj){
-            console.log(obj);
-
             if (typeof(obj.name) === "string") {
                 $('body').children().each(function() {
                     if ($(this).context.localName !== "script") {
-                        $(this).html($(this).html().replace(/city_name/g, 'в ' + obj.name + 'е'));
+                        $(this).html($(this).html().replace(/city_name/g, 'в ' + getName(obj.name)));
                     }
                 });
+            } else {
+                $(this).html($(this).html().replace(/city_name/g, ''));
             }
         }
     });

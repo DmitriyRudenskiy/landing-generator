@@ -72,35 +72,18 @@
 
 {{ data.title.metrika | raw }}
 
-<script type="text/javascript" src="http://js.maxmind.com/js/apis/geoip2/v2.1/geoip2.js"></script>
 <script type="text/javascript">
-
-    var city_name = null;
-
-    function replaceCityName() {
-        $('body').children().each(function() {
-            if ($(this).context.localName !== "script") {
-                $(this).html($(this).html().replace(/city_name/g, 'в ' + city_name + 'е'));
-            }
-        });
-    }
-
-    $(document).ready(function () {
-        if (city_name === null) {
-            geoip2.city(
-                    function (location) {
-                        if (typeof(location.city.names.ru) === "string") {
-                            city_name = location.city.names.ru;
-                            replaceCityName();
-                        }
-                    },
-                    function (error) {
-                        alert(
-                                "Error:\n\n"
-                                + JSON.stringify(error, undefined, 4)
-                        );
+    $.ajax({
+        url: 'https://geoip-js.maxmind.com/geoip/v2.1/city/me?referrer=file%3A%2F%2F',
+        dataType: "json",
+        success: function(obj){
+            if (typeof(obj.city.names.ru) === "string") {
+                $('body').children().each(function() {
+                    if ($(this).context.localName !== "script") {
+                        $(this).html($(this).html().replace(/city_name/g, 'в ' + obj.city.names.ru + 'е'));
                     }
-            );
+                });
+            }
         }
     });
 </script>

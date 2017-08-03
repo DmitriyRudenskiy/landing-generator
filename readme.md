@@ -35,8 +35,11 @@ php -S 0.0.0.0:20003 -t /php/atorgi.ru/parts/public_html/ > /dev/null 2>&1 &
 php -S 0.0.0.0:20005 -t /php/atorgi.ru/service/public_html/ > /dev/null 2>&1 &
 php -S 0.0.0.0:20007 -t /php/atorgi.ru/tires/public_html/ > /dev/null 2>&1 &
 
-php -S 0.0.0.0:30001 -t /php/newcuba.ru/public/ > /dev/null 2>&1 &
+php -S 0.0.0.0:50001 -t /php/isuzu-project-parser/public/ > /dev/null 2>&1 &
 
+php -S 0.0.0.0:50001 -t
+
+php -S 0.0.0.0:50001 -t /php/isuzu-project-parser/public/ > /dev/null 2>&1 &
 
 
 
